@@ -754,6 +754,8 @@ void InitClientPersistant (gclient_t *client);
 void InitClientResp (gclient_t *client);
 void InitBodyQue (void);
 void ClientBeginServerFrame (edict_t *ent);
+int CalcXP(edict_t *self);
+void GivePlayerXP(edict_t *self, int xp);
 
 //
 // g_player.c

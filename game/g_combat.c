@@ -122,6 +122,14 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 		monster_death_use (targ);
 	}
 
+	if (targ->deadflag != DEAD_DEAD && attacker->client)
+	{
+		gi.cprintf(attacker, 2, "Killed\n");
+		int xp = 0;
+		xp = CalcXP(attacker);
+		GivePlayerXP(attacker, xp);
+	}
+
 	targ->die (targ, inflictor, attacker, damage, point);
 }
 

@@ -1803,3 +1803,14 @@ void ClientBeginServerFrame (edict_t *ent)
 
 	client->latched_buttons = 0;
 }
+
+int CalcXP(edict_t *self)
+{
+	int exp = 15;
+	return exp;
+}
+
+void GivePlayerXP(edict_t *self, int xp)
+{
+	gi.cprintf(self, 2, "XP: %d\n", xp);
+}
