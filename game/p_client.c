@@ -618,7 +618,6 @@ void InitClientPersistant (gclient_t *client)
 
 	client->pers.health			= 100;
 	client->pers.max_health		= 100;
-	client->pers.xp_total		= 0;
 
 	client->pers.max_bullets	= 200;
 	client->pers.max_shells		= 100;
@@ -627,7 +626,10 @@ void InitClientPersistant (gclient_t *client)
 	client->pers.max_cells		= 200;
 	client->pers.max_slugs		= 50;
 
-	client->pers.connected = true;
+	client->pers.connected		= true;
+
+	client->pers.level			= 1;
+	client->pers.total_xp       = 0;
 }
 
 
@@ -1813,15 +1815,15 @@ int CalcXP(edict_t *enemy)
 
 void GivePlayerXP(edict_t *self, int xp)
 {
-	self->client->total_xp += xp;
-	int total = self->client->total_xp;
+	self->client->pers.total_xp += xp;
+	int total = self->client->pers.total_xp;
 	if (total >= 100)
 	{
-		self->client->level += total / 100;
-		self->client->total_xp %= 100;
+		self->client->pers.level += total / 100;
+		self->client->pers.total_xp %= 100;
 		gi.centerprintf(self, "Level Up");
 	}
 	gi.cprintf(self, 2, "Kill XP: %d\n", xp);
-	gi.cprintf(self, 2, "Level: %d\n", self->client->level);
-	gi.cprintf(self, 2, "XP Total: %d\n", self->client->total_xp);
+	gi.cprintf(self, 2, "Level: %d\n", self->client->pers.level);
+	gi.cprintf(self, 2, "XP Total: %d\n", self->client->pers.total_xp);
 }

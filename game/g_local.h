@@ -842,7 +842,6 @@ typedef struct
 	int			health;
 	int			max_health;
 	int			savedFlags;
-	int			xp_total;
 
 	int			selected_item;
 	int			inventory[MAX_ITEMS];
@@ -865,6 +864,9 @@ typedef struct
 	int			helpchanged;
 
 	qboolean	spectator;			// client is a spectator
+
+	int			total_xp;			// stores player xp value
+	int			level;				// stores player level
 } client_persistant_t;
 
 // client data that stays across deathmatch respawns
@@ -962,9 +964,6 @@ struct gclient_s
 
 	edict_t		*chase_target;		// player we are chasing
 	qboolean	update_chase;		// need to update chase info?
-
-	int			total_xp;
-	int			level;
 };
 
 

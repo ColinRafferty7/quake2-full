@@ -7,11 +7,11 @@ C:\git\quake2-full\game\p_client.c(179,43): warning C4100: 'other': unreferenced
 C:\git\quake2-full\game\p_client.c(179,28): warning C4100: 'self': unreferenced formal parameter
 C:\git\quake2-full\game\p_client.c(211,46): warning C4100: 'inflictor': unreferenced formal parameter
 C:\git\quake2-full\game\p_client.c(501,91): warning C4100: 'point': unreferenced formal parameter
-C:\git\quake2-full\game\p_client.c(932,89): warning C4100: 'point': unreferenced formal parameter
-C:\git\quake2-full\game\p_client.c(932,60): warning C4100: 'attacker': unreferenced formal parameter
-C:\git\quake2-full\game\p_client.c(932,40): warning C4100: 'inflictor': unreferenced formal parameter
-C:\git\quake2-full\game\p_client.c(1371,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\git\quake2-full\game\p_client.c(1376,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\git\quake2-full\game\p_client.c(1416,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\git\quake2-full\game\p_client.c(934,89): warning C4100: 'point': unreferenced formal parameter
+C:\git\quake2-full\game\p_client.c(934,60): warning C4100: 'attacker': unreferenced formal parameter
+C:\git\quake2-full\game\p_client.c(934,40): warning C4100: 'inflictor': unreferenced formal parameter
+C:\git\quake2-full\game\p_client.c(1373,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\git\quake2-full\game\p_client.c(1378,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\git\quake2-full\game\p_client.c(1418,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
      Creating library .\..\release\gamex86.lib and object .\..\release\gamex86.exp
   game.vcxproj -> C:\Program Files (x86)\Steam\steamapps\common\Quake 2\mod\gamex86.dll
