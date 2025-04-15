@@ -964,6 +964,7 @@ struct gclient_s
 	qboolean	update_chase;		// need to update chase info?
 
 	int			total_xp;
+	int			level;
 };
 
 
@@ -1063,6 +1064,7 @@ struct edict_s
 	qboolean	show_hostile;
 
 	int			kill_xp;
+
 
 	float		powerarmor_time;
 

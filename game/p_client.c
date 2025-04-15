@@ -1814,6 +1814,14 @@ int CalcXP(edict_t *enemy)
 void GivePlayerXP(edict_t *self, int xp)
 {
 	self->client->total_xp += xp;
-	gi.cprintf(self, 2, "Kill_XP: %d\n", xp);
-	gi.cprintf(self, 2, "XP_Total: %d\n", self->client->total_xp);
+	int total = self->client->total_xp;
+	if (total >= 100)
+	{
+		self->client->level += total / 100;
+		self->client->total_xp %= 100;
+		gi.centerprintf(self, "Level Up");
+	}
+	gi.cprintf(self, 2, "Kill XP: %d\n", xp);
+	gi.cprintf(self, 2, "Level: %d\n", self->client->level);
+	gi.cprintf(self, 2, "XP Total: %d\n", self->client->total_xp);
 }
