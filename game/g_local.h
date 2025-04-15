@@ -754,7 +754,7 @@ void InitClientPersistant (gclient_t *client);
 void InitClientResp (gclient_t *client);
 void InitBodyQue (void);
 void ClientBeginServerFrame (edict_t *ent);
-int CalcXP(edict_t *self);
+int CalcXP(edict_t *enemy);
 void GivePlayerXP(edict_t *self, int xp);
 
 //
@@ -1058,6 +1058,8 @@ struct edict_s
 	int			gib_health;
 	int			deadflag;
 	qboolean	show_hostile;
+
+	int			kill_xp;
 
 	float		powerarmor_time;
 

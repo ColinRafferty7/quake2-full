@@ -124,9 +124,9 @@ void Killed (edict_t *targ, edict_t *inflictor, edict_t *attacker, int damage, v
 
 	if (targ->deadflag != DEAD_DEAD && attacker->client)
 	{
-		gi.cprintf(attacker, 2, "Killed\n");
+		gi.cprintf(attacker, 2, "%s\n", targ->classname);
 		int xp = 0;
-		xp = CalcXP(attacker);
+		xp = CalcXP(targ);
 		GivePlayerXP(attacker, xp);
 	}
 

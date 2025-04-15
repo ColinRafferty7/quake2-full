@@ -1804,9 +1804,9 @@ void ClientBeginServerFrame (edict_t *ent)
 	client->latched_buttons = 0;
 }
 
-int CalcXP(edict_t *self)
+int CalcXP(edict_t *enemy)
 {
-	int exp = 15;
+	int exp = enemy->kill_xp;
 	return exp;
 }
 
