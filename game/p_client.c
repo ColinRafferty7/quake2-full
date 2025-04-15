@@ -618,6 +618,7 @@ void InitClientPersistant (gclient_t *client)
 
 	client->pers.health			= 100;
 	client->pers.max_health		= 100;
+	client->pers.xp_total		= 0;
 
 	client->pers.max_bullets	= 200;
 	client->pers.max_shells		= 100;
@@ -1812,5 +1813,7 @@ int CalcXP(edict_t *enemy)
 
 void GivePlayerXP(edict_t *self, int xp)
 {
-	gi.cprintf(self, 2, "XP: %d\n", xp);
+	self->client->total_xp += xp;
+	gi.cprintf(self, 2, "Kill_XP: %d\n", xp);
+	gi.cprintf(self, 2, "XP_Total: %d\n", self->client->total_xp);
 }

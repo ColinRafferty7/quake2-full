@@ -842,6 +842,7 @@ typedef struct
 	int			health;
 	int			max_health;
 	int			savedFlags;
+	int			xp_total;
 
 	int			selected_item;
 	int			inventory[MAX_ITEMS];
@@ -961,6 +962,8 @@ struct gclient_s
 
 	edict_t		*chase_target;		// player we are chasing
 	qboolean	update_chase;		// need to update chase info?
+
+	int			total_xp;
 };
 
 
