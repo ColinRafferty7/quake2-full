@@ -1228,3 +1228,107 @@ void fire_sword(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, 
 
 	gi.linkentity(rocket);
 }
+
+void bow_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
+{
+	vec3_t		origin;
+	int			n;
+
+	if (other == self->owner)
+		return;
+
+	if (surf && (surf->flags & SURF_SKY))
+	{
+		G_FreeEdict(self);
+		return;
+	}
+
+	if (self->owner->client)
+		PlayerNoise(self->owner, self->s.origin, PNOISE_IMPACT);
+
+	// calculate position for the explosion entity
+	VectorMA(self->s.origin, -0.02, self->velocity, origin);
+
+	if (other->takedamage)
+	{
+		T_Damage(other, self, self->owner, self->velocity, self->s.origin, plane->normal, self->dmg, 0, 0, MOD_ROCKET);
+	}
+	else
+	{
+		// don't throw any debris in net games
+		if (!deathmatch->value && !coop->value)
+		{
+			if ((surf) && !(surf->flags & (SURF_WARP | SURF_TRANS33 | SURF_TRANS66 | SURF_FLOWING)))
+			{
+				n = rand() % 5;
+				while (n--)
+					ThrowDebris(self, "models/objects/debris2/tris.md2", 2, self->s.origin);
+			}
+		}
+	}
+
+	T_RadiusDamage(self, self->owner, self->radius_dmg, self->owner, self->dmg_radius, MOD_R_SPLASH);
+
+	gi.WriteByte(svc_temp_entity);
+	if (self->waterlevel)
+		gi.WriteByte(TE_ROCKET_EXPLOSION_WATER);
+	else
+		gi.WriteByte(TE_ROCKET_EXPLOSION);
+	gi.WritePosition(origin);
+	gi.multicast(self->s.origin, MULTICAST_PHS);
+
+	G_FreeEdict(self);
+}
+
+void bow_think(edict_t* self)
+{
+	/*
+	vec3_t newVelo;
+	vec3_t veloChange = { 0.0f, 0.0f, 500.0f };
+	VectorSubtract(self->velocity, veloChange, newVelo);
+	VectorCopy( newVelo, self->velocity);
+	*/
+	VectorScale(self->velocity, 0.75f, self->velocity);
+	self->velocity[2] -= 200;
+
+	self->nextthink = level.time + FRAMETIME;
+}
+
+void fire_bow(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage)
+{
+	edict_t* bolt;
+	trace_t	tr;
+
+	vec3_t addHeight = { 0.0f, 0.0f, 100.0f };
+
+	VectorAdd(start, addHeight, start);
+
+	edict_t* rocket;
+
+	rocket = G_Spawn();
+	VectorCopy(start, rocket->s.origin);
+	VectorCopy(dir, rocket->movedir);
+	vectoangles(dir, rocket->s.angles);
+	VectorScale(dir, speed, rocket->velocity);
+	rocket->movetype = MOVETYPE_FLYMISSILE;
+	rocket->clipmask = MASK_SHOT;
+	rocket->solid = SOLID_BBOX;
+	rocket->s.effects |= EF_ROCKET;
+	VectorClear(rocket->mins);
+	VectorClear(rocket->maxs);
+	rocket->s.modelindex = gi.modelindex("models/objects/rocket/tris.md2");
+	rocket->owner = self;
+	rocket->touch = bow_touch;
+	rocket->nextthink = level.time + FRAMETIME;
+	rocket->think = bow_think;
+	rocket->dmg = damage;
+	rocket->radius_dmg = radius_damage;
+	rocket->dmg_radius = damage_radius;
+	rocket->s.sound = gi.soundindex("weapons/rockfly.wav");
+	rocket->classname = "rocket";
+
+	if (self->client)
+		check_dodge(self, rocket->s.origin, dir, speed);
+
+	gi.linkentity(rocket);
+}
