@@ -59,14 +59,14 @@ C:\git\quake2-full\game\g_func.c(1960,47): warning C4100: 'inflictor': unreferen
 C:\git\quake2-full\game\g_func.c(2037,59): warning C4100: 'activator': unreferenced formal parameter
 C:\git\quake2-full\game\g_func.c(2037,43): warning C4100: 'other': unreferenced formal parameter
   g_items.c
-C:\git\quake2-full\game\g_items.c(47,12): warning C4211: nonstandard extension used: redefined extern to static
 C:\git\quake2-full\game\g_items.c(48,12): warning C4211: nonstandard extension used: redefined extern to static
 C:\git\quake2-full\game\g_items.c(49,12): warning C4211: nonstandard extension used: redefined extern to static
-C:\git\quake2-full\game\g_items.c(709,45): warning C4100: 'item': unreferenced formal parameter
-C:\git\quake2-full\game\g_items.c(765,77): warning C4100: 'surf': unreferenced formal parameter
-C:\git\quake2-full\game\g_items.c(765,58): warning C4100: 'plane': unreferenced formal parameter
-C:\git\quake2-full\game\g_items.c(896,55): warning C4100: 'activator': unreferenced formal parameter
-C:\git\quake2-full\game\g_items.c(896,39): warning C4100: 'other': unreferenced formal parameter
+C:\git\quake2-full\game\g_items.c(50,12): warning C4211: nonstandard extension used: redefined extern to static
+C:\git\quake2-full\game\g_items.c(710,45): warning C4100: 'item': unreferenced formal parameter
+C:\git\quake2-full\game\g_items.c(766,77): warning C4100: 'surf': unreferenced formal parameter
+C:\git\quake2-full\game\g_items.c(766,58): warning C4100: 'plane': unreferenced formal parameter
+C:\git\quake2-full\game\g_items.c(897,55): warning C4100: 'activator': unreferenced formal parameter
+C:\git\quake2-full\game\g_items.c(897,39): warning C4100: 'other': unreferenced formal parameter
   g_main.c
 C:\git\quake2-full\game\g_main.c(148,2): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\git\quake2-full\game\g_main.c(160,2): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
@@ -212,6 +212,8 @@ C:\git\quake2-full\game\g_weapon.c(1196,10): warning C4101: 'tr': unreferenced l
 C:\git\quake2-full\game\g_weapon.c(1195,11): warning C4101: 'bolt': unreferenced local variable
 C:\git\quake2-full\game\g_weapon.c(1300,10): warning C4101: 'tr': unreferenced local variable
 C:\git\quake2-full\game\g_weapon.c(1299,11): warning C4101: 'bolt': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1404,10): warning C4101: 'tr': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1403,11): warning C4101: 'bolt': unreferenced local variable
   m_actor.c
 C:\git\quake2-full\game\m_actor.c(230,65): warning C4100: 'damage': unreferenced formal parameter
 C:\git\quake2-full\game\m_actor.c(230,55): warning C4100: 'kick': unreferenced formal parameter
@@ -417,6 +419,7 @@ C:\git\quake2-full\game\p_weapon.c(1434,81): warning C4100: 'effect': unreferenc
 C:\git\quake2-full\game\p_weapon.c(1485,80): warning C4100: 'effect': unreferenced formal parameter
 C:\git\quake2-full\game\p_weapon.c(1536,80): warning C4100: 'effect': unreferenced formal parameter
 C:\git\quake2-full\game\p_weapon.c(1587,78): warning C4100: 'effect': unreferenced formal parameter
+C:\git\quake2-full\game\p_weapon.c(1638,83): warning C4100: 'effect': unreferenced formal parameter
   Generating Code...
 C:\git\quake2-full\game\p_hud.c(423,1): warning C4701: potentially uninitialized local variable 'cells' used
      Creating library .\..\release\gamex86.lib and object .\..\release\gamex86.exp

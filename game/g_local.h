@@ -737,6 +737,7 @@ void fire_hammer(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed,
 void fire_spear(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage);
 void fire_sword(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage);
 void fire_bow(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage);
+void fire_gauntlet(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage);
 
 //
 // g_ptrail.c
