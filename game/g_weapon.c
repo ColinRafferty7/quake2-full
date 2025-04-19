@@ -917,6 +917,12 @@ void fire_bfg (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, f
 	gi.linkentity (bfg);
 }
 
+/*
+=================
+fire_hammer
+=================
+*/
+
 void hammer_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
 	vec3_t		origin;
@@ -1004,7 +1010,7 @@ void fire_hammer(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed,
 	rocket->s.effects |= EF_ROCKET;
 	VectorClear(rocket->mins);
 	VectorClear(rocket->maxs);
-	rocket->s.modelindex = gi.modelindex("models/objects/rocket/tris.md2");
+	rocket->s.modelindex = gi.modelindex("models/objects/satellite/tris.md2");
 	rocket->owner = self;
 	rocket->touch = hammer_touch;
 	rocket->nextthink = level.time + FRAMETIME;
@@ -1020,6 +1026,12 @@ void fire_hammer(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed,
 
 	gi.linkentity(rocket);
 }
+
+/*
+=================
+fire_spear
+=================
+*/
 
 void spear_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
@@ -1125,6 +1137,12 @@ void fire_spear(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, 
 	gi.linkentity(rocket);
 }
 
+/*
+=================
+fire_sword
+=================
+*/
+
 void sword_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
 	vec3_t		origin;
@@ -1229,6 +1247,12 @@ void fire_sword(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, 
 	gi.linkentity(rocket);
 }
 
+/*
+=================
+fire_bow
+=================
+*/
+
 void bow_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
 	vec3_t		origin;
@@ -1332,6 +1356,12 @@ void fire_bow(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, fl
 
 	gi.linkentity(rocket);
 }
+
+/*
+=================
+fire_gauntlet
+=================
+*/
 
 void gauntlet_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {

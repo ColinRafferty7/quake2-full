@@ -1544,7 +1544,7 @@ always owned, never in the world
 /* precache */ "sprites/s_bfg1.sp2 sprites/s_bfg2.sp2 sprites/s_bfg3.sp2 weapons/bfg__f1y.wav weapons/bfg__l1a.wav weapons/bfg__x1b.wav weapons/bfg_hum.wav"
 	},
 
-	/*QUAKED weapon_shotgun (.3 .3 1) (-16 -16 -16) (16 16 16)
+	/*QUAKED weapon_hammer (.3 .3 1) (-16 -16 -16) (16 16 16)
 	*/
 
 	{
@@ -1555,7 +1555,7 @@ always owned, never in the world
 		Weapon_Hammer,
 		"misc/w_pkup.wav",
 		"models/weapons/g_shotg/tris.md2", EF_ROTATE,
-		"models/weapons/v_shotg/tris.md2",
+		"models/objects/rocket/tris.md2",
 		/* icon */		"w_shotgun",
 		/* pickup */	"Hammer",
 				0,
@@ -1568,7 +1568,7 @@ always owned, never in the world
 				/* precache */ "weapons/shotgf1b.wav weapons/shotgr1b.wav"
 	},
 
-	/*QUAKED weapon_shotgun (.3 .3 1) (-16 -16 -16) (16 16 16)
+	/*QUAKED weapon_spear (.3 .3 1) (-16 -16 -16) (16 16 16)
 	*/
 
 	{
@@ -1592,7 +1592,7 @@ always owned, never in the world
 				/* precache */ "weapons/shotgf1b.wav weapons/shotgr1b.wav"
 	},
 
-	/*QUAKED weapon_shotgun (.3 .3 1) (-16 -16 -16) (16 16 16)
+	/*QUAKED weapon_sword (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 
 	{
@@ -1616,7 +1616,7 @@ always owned, never in the world
 				/* precache */ "weapons/shotgf1b.wav weapons/shotgr1b.wav"
 	},
 
-	/*QUAKED weapon_shotgun (.3 .3 1) (-16 -16 -16) (16 16 16)
+	/*QUAKED weapon_bow (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 
 	{
@@ -1640,7 +1640,7 @@ always owned, never in the world
 				/* precache */ "weapons/shotgf1b.wav weapons/shotgr1b.wav"
 	},
 
-	/*QUAKED weapon_shotgun (.3 .3 1) (-16 -16 -16) (16 16 16)
+	/*QUAKED weapon_gauntlet (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 
 	{

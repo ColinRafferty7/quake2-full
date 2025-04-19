@@ -1430,6 +1430,13 @@ void Weapon_BFG (edict_t *ent)
 	Weapon_Generic (ent, 8, 32, 55, 58, pause_frames, fire_frames, weapon_bfg_fire);
 }
 
+/*
+======================================================================
+
+Hammer
+
+======================================================================
+*/
 
 void Hammer_Fire(edict_t* ent, vec3_t g_offset, int damage, qboolean hyper, int effect)
 {
@@ -1482,6 +1489,14 @@ void Weapon_Hammer(edict_t* ent)
 	Weapon_Generic(ent, 4, 8, 52, 55, pause_frames, fire_frames, Weapon_Hammer_Fire);
 }
 
+/*
+======================================================================
+
+Spear
+
+======================================================================
+*/
+
 void Spear_Fire(edict_t* ent, vec3_t g_offset, int damage, qboolean hyper, int effect)
 {
 	vec3_t	forward, right;
@@ -1512,7 +1527,6 @@ void Spear_Fire(edict_t* ent, vec3_t g_offset, int damage, qboolean hyper, int e
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 }
 
-
 void Weapon_Spear_Fire(edict_t* ent)
 {
 	int		damage;
@@ -1532,6 +1546,14 @@ void Weapon_Spear(edict_t* ent)
 
 	Weapon_Generic(ent, 4, 8, 52, 55, pause_frames, fire_frames, Weapon_Spear_Fire);
 }
+
+/*
+======================================================================
+
+Sword
+
+======================================================================
+*/
 
 void Sword_Fire(edict_t* ent, vec3_t g_offset, int damage, qboolean hyper, int effect)
 {
@@ -1563,7 +1585,6 @@ void Sword_Fire(edict_t* ent, vec3_t g_offset, int damage, qboolean hyper, int e
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 }
 
-
 void Weapon_Sword_Fire(edict_t* ent)
 {
 	int		damage;
@@ -1583,6 +1604,14 @@ void Weapon_Sword(edict_t* ent)
 
 	Weapon_Generic(ent, 4, 8, 52, 55, pause_frames, fire_frames, Weapon_Sword_Fire);
 }
+
+/*
+======================================================================
+
+Bow
+
+======================================================================
+*/
 
 void Bow_Fire(edict_t* ent, vec3_t g_offset, int damage, qboolean hyper, int effect)
 {
@@ -1614,7 +1643,6 @@ void Bow_Fire(edict_t* ent, vec3_t g_offset, int damage, qboolean hyper, int eff
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 }
 
-
 void Weapon_Bow_Fire(edict_t* ent)
 {
 	int		damage;
@@ -1634,6 +1662,14 @@ void Weapon_Bow(edict_t* ent)
 
 	Weapon_Generic(ent, 4, 8, 52, 55, pause_frames, fire_frames, Weapon_Bow_Fire);
 }
+
+/*
+======================================================================
+
+Gauntlet
+
+======================================================================
+*/
 
 void Gauntlet_Fire(edict_t* ent, vec3_t g_offset, int damage, qboolean hyper, int effect)
 {
@@ -1664,7 +1700,6 @@ void Gauntlet_Fire(edict_t* ent, vec3_t g_offset, int damage, qboolean hyper, in
 
 	PlayerNoise(ent, start, PNOISE_WEAPON);
 }
-
 
 void Weapon_Gauntlet_Fire(edict_t* ent)
 {
