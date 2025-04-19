@@ -1057,56 +1057,17 @@ void spear_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* sur
 	{
 		T_Damage(other, self, self->owner, self->velocity, self->s.origin, plane->normal, self->dmg, 0, 0, MOD_ROCKET);
 	}
-	else
-	{
-		// don't throw any debris in net games
-		if (!deathmatch->value && !coop->value)
-		{
-			if ((surf) && !(surf->flags & (SURF_WARP | SURF_TRANS33 | SURF_TRANS66 | SURF_FLOWING)))
-			{
-				n = rand() % 5;
-				while (n--)
-					ThrowDebris(self, "models/objects/debris2/tris.md2", 2, self->s.origin);
-			}
-		}
-	}
-
-	T_RadiusDamage(self, self->owner, self->radius_dmg, self->owner, self->dmg_radius, MOD_R_SPLASH);
-
-	gi.WriteByte(svc_temp_entity);
-	if (self->waterlevel)
-		gi.WriteByte(TE_ROCKET_EXPLOSION_WATER);
-	else
-		gi.WriteByte(TE_ROCKET_EXPLOSION);
-	gi.WritePosition(origin);
-	gi.multicast(self->s.origin, MULTICAST_PHS);
 
 	G_FreeEdict(self);
 }
 
 void spear_think(edict_t* self)
 {
-	/*
-	vec3_t newVelo;
-	vec3_t veloChange = { 0.0f, 0.0f, 500.0f };
-	VectorSubtract(self->velocity, veloChange, newVelo);
-	VectorCopy( newVelo, self->velocity);
-	*/
-	VectorScale(self->velocity, 0.75f, self->velocity);
-	self->velocity[2] -= 200;
-
-	self->nextthink = level.time + FRAMETIME;
+	G_FreeEdict(self);
 }
 
 void fire_spear(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage)
 {
-	edict_t* bolt;
-	trace_t	tr;
-
-	vec3_t addHeight = { 0.0f, 0.0f, 100.0f };
-
-	VectorAdd(start, addHeight, start);
-
 	edict_t* rocket;
 
 	rocket = G_Spawn();
@@ -1123,7 +1084,7 @@ void fire_spear(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, 
 	rocket->s.modelindex = gi.modelindex("models/objects/rocket/tris.md2");
 	rocket->owner = self;
 	rocket->touch = spear_touch;
-	rocket->nextthink = level.time + FRAMETIME;
+	rocket->nextthink = level.time + 0.25f;
 	rocket->think = spear_think;
 	rocket->dmg = damage;
 	rocket->radius_dmg = radius_damage;

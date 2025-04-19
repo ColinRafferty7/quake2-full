@@ -1579,7 +1579,7 @@ always owned, never in the world
 		Weapon_Spear,
 		"misc/w_pkup.wav",
 		"models/weapons/g_shotg/tris.md2", EF_ROTATE,
-		"models/weapons/v_shotg/tris.md2",
+		"models/objects/rocket/tris.md2",
 		/* icon */		"w_shotgun",
 		/* pickup */	"Spear",
 				0,
