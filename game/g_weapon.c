@@ -919,7 +919,8 @@ void fire_bfg (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, f
 
 void hammer_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
-	int		mod;
+	vec3_t		origin;
+	int			n;
 
 	if (other == self->owner)
 		return;
@@ -933,153 +934,89 @@ void hammer_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* su
 	if (self->owner->client)
 		PlayerNoise(self->owner, self->s.origin, PNOISE_IMPACT);
 
+	// calculate position for the explosion entity
+	VectorMA(self->s.origin, -0.02, self->velocity, origin);
+
 	if (other->takedamage)
 	{
-		if (self->spawnflags & 1)
-			mod = MOD_HYPERBLASTER;
-		else
-			mod = MOD_BLASTER;
-		T_Damage(other, self, self->owner, self->velocity, self->s.origin, plane->normal, self->dmg, 1, DAMAGE_ENERGY, mod);
+		T_Damage(other, self, self->owner, self->velocity, self->s.origin, plane->normal, self->dmg, 0, 0, MOD_ROCKET);
 	}
 	else
 	{
-		gi.WriteByte(svc_temp_entity);
-		gi.WriteByte(TE_BLASTER);
-		gi.WritePosition(self->s.origin);
-		if (!plane)
-			gi.WriteDir(vec3_origin);
-		else
-			gi.WriteDir(plane->normal);
-		gi.multicast(self->s.origin, MULTICAST_PVS);
+		// don't throw any debris in net games
+		if (!deathmatch->value && !coop->value)
+		{
+			if ((surf) && !(surf->flags & (SURF_WARP | SURF_TRANS33 | SURF_TRANS66 | SURF_FLOWING)))
+			{
+				n = rand() % 5;
+				while (n--)
+					ThrowDebris(self, "models/objects/debris2/tris.md2", 2, self->s.origin);
+			}
+		}
 	}
+	
+	T_RadiusDamage(self, self->owner, self->radius_dmg, self->owner, self->dmg_radius, MOD_R_SPLASH);
+
+	gi.WriteByte(svc_temp_entity);
+	if (self->waterlevel)
+		gi.WriteByte(TE_ROCKET_EXPLOSION_WATER);
+	else
+		gi.WriteByte(TE_ROCKET_EXPLOSION);
+	gi.WritePosition(origin);
+	gi.multicast(self->s.origin, MULTICAST_PHS);
 
 	G_FreeEdict(self);
-
-	gi.cprintf(self->owner, 2, "Hammer Touch\n");
 }
 
 void hammer_think(edict_t* self)
 {
-	gi.cprintf(self->owner, 2, "Hammer Think\n");
-
-	edict_t* ent;
-	edict_t* ignore;
-	vec3_t	point;
-	vec3_t	dir;
-	vec3_t	start;
-	vec3_t	end;
-	int		dmg;
-	trace_t	tr;
-
-	if (deathmatch->value)
-		dmg = 5;
-	else
-		dmg = 10;
-
-	ent = NULL;
-	while ((ent = findradius(ent, self->s.origin, 256)) != NULL)
-	{
-		if (ent == self)
-			continue;
-
-		if (ent == self->owner)
-			continue;
-
-		if (!ent->takedamage)
-			continue;
-
-		if (!(ent->svflags & SVF_MONSTER) && (!ent->client) && (strcmp(ent->classname, "misc_explobox") != 0))
-			continue;
-
-		VectorMA(ent->absmin, 0.5, ent->size, point);
-
-		VectorSubtract(point, self->s.origin, dir);
-		VectorNormalize(dir);
-
-		ignore = self;
-		VectorCopy(self->s.origin, start);
-		VectorMA(start, 2048, dir, end);
-		while (1)
-		{
-			tr = gi.trace(start, NULL, NULL, end, ignore, CONTENTS_SOLID | CONTENTS_MONSTER | CONTENTS_DEADMONSTER);
-
-			if (!tr.ent)
-				break;
-
-			// hurt it if we can
-			if ((tr.ent->takedamage) && !(tr.ent->flags & FL_IMMUNE_LASER) && (tr.ent != self->owner))
-				T_Damage(tr.ent, self, self->owner, dir, tr.endpos, vec3_origin, dmg, 1, DAMAGE_ENERGY, MOD_BFG_LASER);
-
-			// if we hit something that's not a monster or player we're done
-			if (!(tr.ent->svflags & SVF_MONSTER) && (!tr.ent->client))
-			{
-				gi.WriteByte(svc_temp_entity);
-				gi.WriteByte(TE_LASER_SPARKS);
-				gi.WriteByte(4);
-				gi.WritePosition(tr.endpos);
-				gi.WriteDir(tr.plane.normal);
-				gi.WriteByte(self->s.skinnum);
-				gi.multicast(tr.endpos, MULTICAST_PVS);
-				break;
-			}
-
-			ignore = tr.ent;
-			VectorCopy(tr.endpos, start);
-		}
-
-		gi.WriteByte(svc_temp_entity);
-		gi.WriteByte(TE_BFG_LASER);
-		gi.WritePosition(self->s.origin);
-		gi.WritePosition(tr.endpos);
-		gi.multicast(self->s.origin, MULTICAST_PHS);
-	}
+	/*
+	vec3_t newVelo;
+	vec3_t veloChange = { 0.0f, 0.0f, 500.0f };
+	VectorSubtract(self->velocity, veloChange, newVelo);
+	VectorCopy( newVelo, self->velocity);
+	*/
+	VectorScale(self->velocity, 0.75f, self->velocity);
+	self->velocity[2] -= 200;
 
 	self->nextthink = level.time + FRAMETIME;
 }
 
-void fire_hammer(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, int effect, qboolean hyper)
+void fire_hammer(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, float damage_radius, int radius_damage)
 {
 	edict_t* bolt;
 	trace_t	tr;
 
-	VectorNormalize(dir);
+	vec3_t addHeight = { 0.0f, 0.0f, 100.0f };
 
-	bolt = G_Spawn();
-	bolt->svflags = SVF_DEADMONSTER;
-	// yes, I know it looks weird that projectiles are deadmonsters
-	// what this means is that when prediction is used against the object
-	// (blaster/hyperblaster shots), the player won't be solid clipped against
-	// the object.  Right now trying to run into a firing hyperblaster
-	// is very jerky since you are predicted 'against' the shots.
-	VectorCopy(start, bolt->s.origin);
-	VectorCopy(start, bolt->s.old_origin);
-	vectoangles(dir, bolt->s.angles);
-	VectorScale(dir, speed, bolt->velocity);
-	bolt->movetype = MOVETYPE_FLYMISSILE;
-	bolt->clipmask = MASK_SHOT;
-	bolt->solid = SOLID_BBOX;
-	bolt->s.effects |= effect;
-	VectorClear(bolt->mins);
-	VectorClear(bolt->maxs);
-	bolt->s.modelindex = gi.modelindex("models/objects/laser/tris.md2");
-	bolt->s.sound = gi.soundindex("misc/lasfly.wav");
-	bolt->owner = self;
-	bolt->touch = hammer_touch;
-	bolt->nextthink = level.time + FRAMETIME;
-	bolt->think = hammer_think;
-	bolt->dmg = damage;
-	bolt->classname = "bolt";
-	if (hyper)
-		bolt->spawnflags = 1;
-	gi.linkentity(bolt);
+	VectorAdd(start, addHeight, start);
+
+	edict_t* rocket;
+
+	rocket = G_Spawn();
+	VectorCopy(start, rocket->s.origin);
+	VectorCopy(dir, rocket->movedir);
+	vectoangles(dir, rocket->s.angles);
+	VectorScale(dir, speed, rocket->velocity);
+	rocket->movetype = MOVETYPE_FLYMISSILE;
+	rocket->clipmask = MASK_SHOT;
+	rocket->solid = SOLID_BBOX;
+	rocket->s.effects |= EF_ROCKET;
+	VectorClear(rocket->mins);
+	VectorClear(rocket->maxs);
+	rocket->s.modelindex = gi.modelindex("models/objects/rocket/tris.md2");
+	rocket->owner = self;
+	rocket->touch = hammer_touch;
+	rocket->nextthink = level.time + FRAMETIME;
+	rocket->think = hammer_think;
+	rocket->dmg = damage;
+	rocket->radius_dmg = radius_damage;
+	rocket->dmg_radius = damage_radius;
+	rocket->s.sound = gi.soundindex("weapons/rockfly.wav");
+	rocket->classname = "rocket";
 
 	if (self->client)
-		check_dodge(self, bolt->s.origin, dir, speed);
+		check_dodge(self, rocket->s.origin, dir, speed);
 
-	tr = gi.trace(self->s.origin, NULL, NULL, bolt->s.origin, bolt, MASK_SHOT);
-	if (tr.fraction < 1.0)
-	{
-		VectorMA(bolt->s.origin, -10, dir, bolt->s.origin);
-		bolt->touch(bolt, tr.ent, NULL, NULL);
-	}
+	gi.linkentity(rocket);
 }
