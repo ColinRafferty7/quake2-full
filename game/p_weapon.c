@@ -1629,7 +1629,7 @@ void Bow_Fire(edict_t* ent, vec3_t g_offset, int damage, qboolean hyper, int eff
 	VectorScale(forward, -2, ent->client->kick_origin);
 	ent->client->kick_angles[0] = -1;
 
-	fire_bow(ent, start, forward, damage, 650, 120, 120);
+	fire_bow(ent, start, forward, damage, 1000, 120, 120);
 
 	// send muzzle flash
 	gi.WriteByte(svc_muzzleflash);

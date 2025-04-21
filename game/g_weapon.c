@@ -1267,14 +1267,7 @@ void bow_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 
 void bow_think(edict_t* self)
 {
-	/*
-	vec3_t newVelo;
-	vec3_t veloChange = { 0.0f, 0.0f, 500.0f };
-	VectorSubtract(self->velocity, veloChange, newVelo);
-	VectorCopy( newVelo, self->velocity);
-	*/
-	VectorScale(self->velocity, 0.75f, self->velocity);
-	self->velocity[2] -= 200;
+	self->velocity[2] -= 40;
 
 	self->nextthink = level.time + FRAMETIME;
 }
@@ -1283,10 +1276,6 @@ void fire_bow(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, fl
 {
 	edict_t* bolt;
 	trace_t	tr;
-
-	vec3_t addHeight = { 0.0f, 0.0f, 100.0f };
-
-	VectorAdd(start, addHeight, start);
 
 	edict_t* rocket;
 

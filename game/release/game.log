@@ -1,12 +1,14 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  g_items.c
-C:\git\quake2-full\game\g_items.c(48,12): warning C4211: nonstandard extension used: redefined extern to static
-C:\git\quake2-full\game\g_items.c(49,12): warning C4211: nonstandard extension used: redefined extern to static
-C:\git\quake2-full\game\g_items.c(50,12): warning C4211: nonstandard extension used: redefined extern to static
-C:\git\quake2-full\game\g_items.c(710,45): warning C4100: 'item': unreferenced formal parameter
-C:\git\quake2-full\game\g_items.c(766,77): warning C4100: 'surf': unreferenced formal parameter
-C:\git\quake2-full\game\g_items.c(766,58): warning C4100: 'plane': unreferenced formal parameter
-C:\git\quake2-full\game\g_items.c(897,55): warning C4100: 'activator': unreferenced formal parameter
-C:\git\quake2-full\game\g_items.c(897,39): warning C4100: 'other': unreferenced formal parameter
+  g_weapon.c
+C:\git\quake2-full\game\g_weapon.c(455,68): warning C4100: 'plane': unreferenced formal parameter
+C:\git\quake2-full\game\g_weapon.c(994,10): warning C4101: 'tr': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(993,11): warning C4101: 'bolt': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1039,8): warning C4101: 'n': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1175,10): warning C4101: 'tr': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1174,11): warning C4101: 'bolt': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1278,10): warning C4101: 'tr': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1277,11): warning C4101: 'bolt': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1384,10): warning C4101: 'tr': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1383,11): warning C4101: 'bolt': unreferenced local variable
      Creating library .\..\release\gamex86.lib and object .\..\release\gamex86.exp
   game.vcxproj -> C:\Program Files (x86)\Steam\steamapps\common\Quake 2\mod\gamex86.dll
