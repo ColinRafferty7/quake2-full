@@ -8,7 +8,8 @@ C:\git\quake2-full\game\g_weapon.c(1175,10): warning C4101: 'tr': unreferenced l
 C:\git\quake2-full\game\g_weapon.c(1174,11): warning C4101: 'bolt': unreferenced local variable
 C:\git\quake2-full\game\g_weapon.c(1278,10): warning C4101: 'tr': unreferenced local variable
 C:\git\quake2-full\game\g_weapon.c(1277,11): warning C4101: 'bolt': unreferenced local variable
-C:\git\quake2-full\game\g_weapon.c(1384,10): warning C4101: 'tr': unreferenced local variable
-C:\git\quake2-full\game\g_weapon.c(1383,11): warning C4101: 'bolt': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1319,8): warning C4101: 'n': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1355,10): warning C4101: 'tr': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1354,11): warning C4101: 'bolt': unreferenced local variable
      Creating library .\..\release\gamex86.lib and object .\..\release\gamex86.exp
   game.vcxproj -> C:\Program Files (x86)\Steam\steamapps\common\Quake 2\mod\gamex86.dll
