@@ -876,8 +876,6 @@ void bfg_think (edict_t *self)
 	}
 
 	self->nextthink = level.time + FRAMETIME;
-
-	gi.cprintf(self->owner, 2, "BFG Think\n");
 }
 
 

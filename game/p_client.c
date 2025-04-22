@@ -1725,6 +1725,20 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 		}
 	}
 
+	if (client->buttons & BUTTON_ATTACK)
+	{
+
+		if (client->latched_buttons)
+		{
+			gi.cprintf(ent->owner, 2, "Client\n");
+			client->attackHeld = level.time;
+		}
+		else
+		{
+			gi.cprintf(ent, 2, "%f\n", level.time - client->attackHeld);
+		}
+	}
+
 	if (client->resp.spectator) {
 		if (ucmd->upmove >= 10) {
 			if (!(client->ps.pmove.pm_flags & PMF_JUMP_HELD)) {
