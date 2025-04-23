@@ -1730,12 +1730,12 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 
 		if (client->latched_buttons)
 		{
-			gi.cprintf(ent->owner, 2, "Client\n");
+			//gi.cprintf(ent->owner, 2, "Client\n");
 			client->attackHeld = level.time;
 		}
 		else
 		{
-			gi.cprintf(ent, 2, "%f\n", level.time - client->attackHeld);
+			//gi.cprintf(ent, 2, "%f\n", level.time - client->attackHeld);
 		}
 	}
 

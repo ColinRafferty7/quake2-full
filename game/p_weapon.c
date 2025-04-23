@@ -1615,43 +1615,64 @@ Bow
 
 void Bow_Fire(edict_t* ent, vec3_t g_offset, int damage, qboolean hyper, int effect)
 {
-	vec3_t	forward, right;
-	vec3_t	start;
-	vec3_t	offset;
-
-	if (is_quad)
-		damage *= 4;
-	AngleVectors(ent->client->v_angle, forward, right, NULL);
-	VectorSet(offset, 24, 8, ent->viewheight - 8);
-	VectorAdd(offset, g_offset, offset);
-	P_ProjectSource(ent->client, ent->s.origin, offset, forward, right, start);
-
-	VectorScale(forward, -2, ent->client->kick_origin);
-	ent->client->kick_angles[0] = -1;
-
-	fire_bow(ent, start, forward, damage, 1000, 120, 120);
-
-	// send muzzle flash
-	gi.WriteByte(svc_muzzleflash);
-	gi.WriteShort(ent - g_edicts);
-	if (hyper)
-		gi.WriteByte(MZ_HYPERBLASTER | is_silenced);
+	if (ent->client->buttons & BUTTON_ATTACK)
+	{
+		
+	}
 	else
-		gi.WriteByte(MZ_BLASTER | is_silenced);
-	gi.multicast(ent->s.origin, MULTICAST_PVS);
+	{
+		vec3_t	forward, right;
+		vec3_t	start;
+		vec3_t	offset;
 
-	PlayerNoise(ent, start, PNOISE_WEAPON);
+		if (is_quad)
+			damage *= 4;
+		AngleVectors(ent->client->v_angle, forward, right, NULL);
+		VectorSet(offset, 24, 8, ent->viewheight - 8);
+		VectorAdd(offset, g_offset, offset);
+		P_ProjectSource(ent->client, ent->s.origin, offset, forward, right, start);
+
+		VectorScale(forward, -2, ent->client->kick_origin);
+		ent->client->kick_angles[0] = -1;
+
+		fire_bow(ent, start, forward, damage, 1000, 120, 120);
+
+		// send muzzle flash
+		gi.WriteByte(svc_muzzleflash);
+		gi.WriteShort(ent - g_edicts);
+		if (hyper)
+			gi.WriteByte(MZ_HYPERBLASTER | is_silenced);
+		else
+			gi.WriteByte(MZ_BLASTER | is_silenced);
+		gi.multicast(ent->s.origin, MULTICAST_PVS);
+
+		PlayerNoise(ent, start, PNOISE_WEAPON);
+	}
+	
 }
 
-void Weapon_Bow_Fire(edict_t* ent)
+void Bow_Fire_Think(edict_t *ent)
 {
-	int		damage;
+	
+	if (ent->owner->client->buttons & BUTTON_ATTACK)
+	{
 
-	if (deathmatch->value)
-		damage = 15;
+	}
 	else
-		damage = 10;
-	Bow_Fire(ent, vec3_origin, damage, false, EF_BLASTER);
+	{
+		Bow_Fire(ent->owner, vec3_origin, 10, false, EF_BLASTER);
+		G_FreeEdict(ent);
+	}
+	ent->nextthink = level.time + FRAMETIME;
+}
+
+void Weapon_Bow_Fire(edict_t *ent)
+{
+	edict_t *think = G_Spawn();
+	think->owner = ent;
+	think->think = Bow_Fire_Think;
+	think->nextthink = level.time + FRAMETIME;
+	gi.linkentity(think);
 	ent->client->ps.gunframe++;
 }
 
