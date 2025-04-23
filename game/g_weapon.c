@@ -1277,6 +1277,17 @@ void fire_bow(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, fl
 
 	edict_t* rocket;
 
+	float chargeScale;
+
+	chargeScale = ((level.time - self->client->attackHeld) + 0.5f);
+	if (chargeScale > 2)
+	{
+		chargeScale = 2.0f;
+	}
+
+	speed *= chargeScale;
+	damage *= chargeScale;
+
 	rocket = G_Spawn();
 	VectorCopy(start, rocket->s.origin);
 	VectorCopy(dir, rocket->movedir);
