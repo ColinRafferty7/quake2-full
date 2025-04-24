@@ -42,6 +42,7 @@ C:\git\quake2-full\game\m_supertank.c;C:\git\quake2-full\game\release\m_supertan
 C:\git\quake2-full\game\m_tank.c;C:\git\quake2-full\game\release\m_tank.obj
 C:\git\quake2-full\game\p_client.c;C:\git\quake2-full\game\release\p_client.obj
 C:\git\quake2-full\game\p_hud.c;C:\git\quake2-full\game\release\p_hud.obj
+C:\git\quake2-full\game\p_powers.c;C:\git\quake2-full\game\release\p_powers.obj
 C:\git\quake2-full\game\p_trail.c;C:\git\quake2-full\game\release\p_trail.obj
 C:\git\quake2-full\game\p_view.c;C:\git\quake2-full\game\release\p_view.obj
 C:\git\quake2-full\game\p_weapon.c;C:\git\quake2-full\game\release\p_weapon.obj

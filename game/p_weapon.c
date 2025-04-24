@@ -1503,6 +1503,8 @@ void Spear_Fire(edict_t* ent, vec3_t g_offset, int damage, qboolean hyper, int e
 	vec3_t	start;
 	vec3_t	offset;
 
+	PrintTest(ent);
+
 	if (is_quad)
 		damage *= 4;
 	AngleVectors(ent->client->v_angle, forward, right, NULL);

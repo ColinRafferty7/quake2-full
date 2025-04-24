@@ -790,6 +790,11 @@ void ValidateSelectedItem (edict_t *ent);
 void DeathmatchScoreboardMessage (edict_t *client, edict_t *killer);
 
 //
+// p_powers.c
+//
+void PrintTest(edict_t *self);
+
+//
 // g_pweapon.c
 //
 void PlayerNoise(edict_t *who, vec3_t where, int type);
