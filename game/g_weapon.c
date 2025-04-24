@@ -1102,6 +1102,7 @@ fire_sword
 
 void sword_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
+	/*
 	vec3_t		origin;
 	int			n;
 
@@ -1147,6 +1148,7 @@ void sword_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* sur
 		gi.WriteByte(TE_ROCKET_EXPLOSION);
 	gi.WritePosition(origin);
 	gi.multicast(self->s.origin, MULTICAST_PHS);
+	*/
 
 	G_FreeEdict(self);
 }
@@ -1156,9 +1158,11 @@ void sword_think(edict_t* self)
 	vec3_t rotate;
 	float vecScale = VectorLength(self->velocity);
 	vectoangles(self->velocity, rotate);
-	rotate[PITCH] += 30;
+	rotate[YAW] += 30;
 	AngleVectors(rotate, self->velocity, NULL, NULL);
 	VectorScale(self->velocity, vecScale, self->velocity);
+
+	T_RadiusDamage(self, self->owner, self->radius_dmg, self->owner, self->dmg_radius, MOD_R_SPLASH);
 
 	self->nextthink = level.time + FRAMETIME;
 }
@@ -1170,10 +1174,12 @@ void fire_sword(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, 
 
 	edict_t* rocket;
 
-	vec3_t right;
+	vec3_t right, angles;
 
-	AngleVectors(dir, NULL, right, NULL);
-	VectorScale(right, -100, right);
+	vectoangles(dir, angles);
+	AngleVectors(angles, NULL, right, NULL);
+	gi.cprintf(self, 2, "(%f, %f, %f)\n", right[0], right[1], right[2]);
+	VectorScale(right, 100, right);
 	VectorAdd(start, right, start);
 
 	rocket = G_Spawn();
