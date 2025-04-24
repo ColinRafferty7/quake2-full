@@ -1,15 +1,15 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   g_weapon.c
 C:\git\quake2-full\game\g_weapon.c(455,68): warning C4100: 'plane': unreferenced formal parameter
-C:\git\quake2-full\game\g_weapon.c(992,10): warning C4101: 'tr': unreferenced local variable
-C:\git\quake2-full\game\g_weapon.c(991,11): warning C4101: 'bolt': unreferenced local variable
-C:\git\quake2-full\game\g_weapon.c(1037,8): warning C4101: 'n': unreferenced local variable
-C:\git\quake2-full\game\g_weapon.c(1171,10): warning C4101: 'tr': unreferenced local variable
-C:\git\quake2-full\game\g_weapon.c(1170,11): warning C4101: 'bolt': unreferenced local variable
-C:\git\quake2-full\game\g_weapon.c(1276,10): warning C4101: 'tr': unreferenced local variable
-C:\git\quake2-full\game\g_weapon.c(1275,11): warning C4101: 'bolt': unreferenced local variable
-C:\git\quake2-full\game\g_weapon.c(1328,8): warning C4101: 'n': unreferenced local variable
-C:\git\quake2-full\game\g_weapon.c(1364,10): warning C4101: 'tr': unreferenced local variable
-C:\git\quake2-full\game\g_weapon.c(1363,11): warning C4101: 'bolt': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1001,10): warning C4101: 'tr': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1000,11): warning C4101: 'bolt': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1046,8): warning C4101: 'n': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1180,10): warning C4101: 'tr': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1179,11): warning C4101: 'bolt': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1285,10): warning C4101: 'tr': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1284,11): warning C4101: 'bolt': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1337,8): warning C4101: 'n': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1373,10): warning C4101: 'tr': unreferenced local variable
+C:\git\quake2-full\game\g_weapon.c(1372,11): warning C4101: 'bolt': unreferenced local variable
      Creating library .\..\release\gamex86.lib and object .\..\release\gamex86.exp
   game.vcxproj -> C:\Program Files (x86)\Steam\steamapps\common\Quake 2\mod\gamex86.dll

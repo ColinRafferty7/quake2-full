@@ -974,14 +974,12 @@ void hammer_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* su
 
 void hammer_think(edict_t* self)
 {
-	/*
-	vec3_t newVelo;
-	vec3_t veloChange = { 0.0f, 0.0f, 500.0f };
-	VectorSubtract(self->velocity, veloChange, newVelo);
-	VectorCopy( newVelo, self->velocity);
-	*/
-	VectorScale(self->velocity, 0.75f, self->velocity);
-	self->velocity[2] -= 200;
+	vec3_t rotate;
+	float vecScale = VectorLength(self->velocity);
+	vectoangles(self->velocity, rotate);
+	rotate[PITCH] += 30;
+	AngleVectors(rotate, self->velocity, NULL, NULL);
+	VectorScale(self->velocity, vecScale, self->velocity);
 
 	self->nextthink = level.time + FRAMETIME;
 }
@@ -1158,7 +1156,7 @@ void sword_think(edict_t* self)
 	vec3_t rotate;
 	float vecScale = VectorLength(self->velocity);
 	vectoangles(self->velocity, rotate);
-	rotate[YAW] += 30;
+	rotate[PITCH] += 30;
 	AngleVectors(rotate, self->velocity, NULL, NULL);
 	VectorScale(self->velocity, vecScale, self->velocity);
 
