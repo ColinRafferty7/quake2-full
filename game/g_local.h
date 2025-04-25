@@ -792,7 +792,7 @@ void DeathmatchScoreboardMessage (edict_t *client, edict_t *killer);
 //
 // p_powers.c
 //
-void PrintTest(edict_t *self);
+void Geomancy(edict_t *self);
 
 //
 // g_pweapon.c

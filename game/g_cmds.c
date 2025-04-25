@@ -901,7 +901,7 @@ void Cmd_PlayerList_f(edict_t *ent)
 
 void Cmd_Ability(edict_t *ent)
 {
-	PrintTest(ent);
+	Geomancy(ent);
 }
 
 
