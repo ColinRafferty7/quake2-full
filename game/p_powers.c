@@ -2,5 +2,5 @@
 
 void PrintTest(edict_t *self)
 {
-	gi.cprintf(self, 2, "Works\n");
+	gi.cprintf(self, 2, "Powers\n");
 }

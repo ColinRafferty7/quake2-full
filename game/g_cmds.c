@@ -901,7 +901,7 @@ void Cmd_PlayerList_f(edict_t *ent)
 
 void Cmd_Ability(edict_t *ent)
 {
-	gi.cprintf(ent, 2, "Ability\n");
+	PrintTest(ent);
 }
 
 
@@ -912,7 +912,6 @@ ClientCommand
 */
 void ClientCommand (edict_t *ent)
 {
-	gi.cprintf(ent->owner, 2, "CC\n");
 	char	*cmd;
 
 	if (!ent->client)
@@ -994,10 +993,7 @@ void ClientCommand (edict_t *ent)
 	else if (Q_stricmp(cmd, "playerlist") == 0)
 		Cmd_PlayerList_f(ent);
 	else if (Q_stricmp(cmd, "ability") == 0)
-	{
-		gi.cprintf(ent, 2, "if\n");
 		Cmd_Ability(ent);
-	}
 	else	// anything that doesn't match a command will be a chat
 		Cmd_Say_f (ent, false, true);
 }
