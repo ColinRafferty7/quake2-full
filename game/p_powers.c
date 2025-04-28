@@ -79,3 +79,12 @@ void Geomancy(edict_t *self)
 	}
 }
 
+void Lashing(edict_t *self)
+{
+	vec3_t dir;
+
+	AngleVectors(self->client->v_angle, dir, NULL, NULL);
+	VectorScale(dir, 1000, dir);
+	VectorAdd(self->velocity, dir, self->velocity);
+}
+
