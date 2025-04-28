@@ -88,3 +88,57 @@ void Lashing(edict_t *self)
 	VectorAdd(self->velocity, dir, self->velocity);
 }
 
+void ExploThink(edict_t *self)
+{
+	int min, max;
+	vec3_t orig;
+
+	min = -75;
+	max = 75;
+
+	VectorCopy(self->s.origin, orig);
+
+	self->s.origin[0] += (min + (rand() % (max - min)));
+	self->s.origin[1] += (min + (rand() % (max - min)));
+	self->s.origin[2] += (min + (rand() % (max - min)));
+
+	T_RadiusDamage(self, self->owner, 120, self->owner, 120, MOD_R_SPLASH);
+
+	
+	gi.WriteByte(svc_temp_entity);
+	if (self->waterlevel)
+		gi.WriteByte(TE_ROCKET_EXPLOSION_WATER);
+	else
+		gi.WriteByte(TE_ROCKET_EXPLOSION);
+	gi.WritePosition(self->s.origin);
+	gi.multicast(self->s.origin, MULTICAST_PHS);
+
+	VectorCopy(orig, self->s.origin);
+
+	self->count++;
+	
+	self->nextthink = level.time + FRAMETIME;
+
+	if (self->count >= 20)
+	{
+		G_FreeEdict(self);
+	}
+}
+
+void Division(edict_t *self)
+{
+	edict_t* explosion;
+	vec3_t origin;
+
+	explosion = G_Spawn();
+
+	explosion->think = ExploThink;
+	explosion->nextthink = level.time + FRAMETIME;
+	AngleVectors(self->client->v_angle, origin, NULL, NULL);
+	VectorScale(origin, 125, origin);
+	VectorAdd(origin, self->s.origin, origin);
+	VectorCopy(origin, explosion->s.origin);
+	explosion->owner = self;
+	explosion->count = 0;
+}
+

@@ -794,6 +794,7 @@ void DeathmatchScoreboardMessage (edict_t *client, edict_t *killer);
 //
 void Geomancy(edict_t *self);
 void Lashing(edict_t *self);
+void Division(edict_t *self);
 
 //
 // g_pweapon.c
