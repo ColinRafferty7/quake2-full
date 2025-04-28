@@ -1,5 +1,17 @@
 #include "g_local.h"
 
+void RockTouch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
+{
+	float heightDif;
+	//heightDif = other->s.origin[2]
+}
+
+void RockThink(edict_t* ent)
+{
+	ent->s.origin[2] += 30;
+	ent->nextthink = level.time + FRAMETIME;
+}
+
 void SpawnRock(edict_t* self, vec3_t origin)
 {
 	edict_t* rock;
@@ -7,7 +19,14 @@ void SpawnRock(edict_t* self, vec3_t origin)
 	rock = G_Spawn();
 
 	VectorCopy(origin, rock->s.origin);
+	rock->s.origin[2] -= 50;
 	rock->s.modelindex = gi.modelindex("models/objects/barrels/tris.md2");
+	rock->solid = SOLID_BBOX;
+	rock->movetype = MOVETYPE_NONE;
+	rock->think = RockThink;
+	rock->nextthink = level.time + FRAMETIME;
+	VectorSet(rock->mins, -15, -15, 0);
+	VectorSet(rock->maxs, 15, 15, 50);
 	gi.linkentity(rock);
 }
 
