@@ -3,13 +3,26 @@
 void RockTouch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
 	float heightDif;
-	//heightDif = other->s.origin[2]
+	heightDif = (other->s.origin[2] + other->mins[2]) - (self->s.origin[2] + self->maxs[2]);
+	if (heightDif < 0 && heightDif > -10)
+	{
+		other->s.origin[2] = self->s.origin[2] + self->maxs[2] + other->mins[2];
+	}
 }
 
-void RockThink(edict_t* ent)
+void RockThink(edict_t* self, edict_t* other)
 {
-	ent->s.origin[2] += 30;
-	ent->nextthink = level.time + FRAMETIME;
+	self->s.origin[2] += 30;
+
+	float heightDif;
+	heightDif = (other->s.origin[2] + other->mins[2]) - (self->s.origin[2] + self->maxs[2]);
+	if (heightDif < 0 && heightDif > -10)
+	{
+		other->s.origin[2] = self->s.origin[2] + self->maxs[2] + other->mins[2];
+		gi.cprintf(self->owner, 2, "%d\n", heightDif);
+	}
+
+	self->nextthink = level.time + FRAMETIME;
 }
 
 void SpawnRock(edict_t* self, vec3_t origin)
@@ -25,6 +38,8 @@ void SpawnRock(edict_t* self, vec3_t origin)
 	rock->movetype = MOVETYPE_NONE;
 	rock->think = RockThink;
 	rock->nextthink = level.time + FRAMETIME;
+	rock->touch = RockTouch;
+	rock->owner = self;
 	VectorSet(rock->mins, -15, -15, 0);
 	VectorSet(rock->maxs, 15, 15, 50);
 	gi.linkentity(rock);
