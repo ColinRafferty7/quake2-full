@@ -142,3 +142,31 @@ void Division(edict_t *self)
 	explosion->count = 0;
 }
 
+void LightWeaving(edict_t *self)
+{
+	edict_t *lightweave;
+	vec3_t spawn;
+
+	lightweave = G_Spawn();
+
+	AngleVectors(self->client->v_angle, spawn, NULL, NULL);
+	VectorScale(spawn, 125, spawn);
+	VectorAdd(spawn, self->s.origin, spawn);
+
+	lightweave->decoy = true;
+
+	SP_monster_soldier(lightweave);
+	VectorCopy(self->s.origin, lightweave->s.origin);
+
+	lightweave->s.origin[0] = spawn[0];
+	lightweave->s.origin[1] = spawn[1];
+
+	lightweave->solid = SOLID_BBOX;
+	lightweave->monsterinfo.aiflags |= AI_GOOD_GUY;
+
+	lightweave->kill_xp = 0;
+
+	T_RadiusDamage(lightweave, lightweave, 0, self, 500, MOD_R_SPLASH);
+	gi.linkentity(lightweave);
+}
+

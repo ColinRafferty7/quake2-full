@@ -795,6 +795,7 @@ void DeathmatchScoreboardMessage (edict_t *client, edict_t *killer);
 void Geomancy(edict_t *self);
 void Lashing(edict_t *self);
 void Division(edict_t *self);
+void LightWeaving(edict_t *self);
 
 //
 // g_pweapon.c
@@ -808,6 +809,11 @@ qboolean M_CheckBottom (edict_t *ent);
 qboolean M_walkmove (edict_t *ent, float yaw, float dist);
 void M_MoveToGoal (edict_t *ent, float dist);
 void M_ChangeYaw (edict_t *ent);
+
+//
+// m_soldier.c
+//
+void SP_monster_soldier(edict_t* self);
 
 //
 // g_phys.c
@@ -1078,6 +1084,7 @@ struct edict_s
 
 	int			kill_xp;
 
+	qboolean	decoy;
 
 	float		powerarmor_time;
 
