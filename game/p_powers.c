@@ -142,6 +142,11 @@ void Division(edict_t *self)
 	explosion->count = 0;
 }
 
+void LightWeaveDecay(edict_t *self)
+{
+	G_FreeEdict(self);
+}
+
 void LightWeaving(edict_t *self)
 {
 	edict_t *lightweave;
@@ -161,12 +166,17 @@ void LightWeaving(edict_t *self)
 	lightweave->s.origin[0] = spawn[0];
 	lightweave->s.origin[1] = spawn[1];
 
+	lightweave->s.angles[1] = self->client->v_angle[1];
+
 	lightweave->solid = SOLID_BBOX;
 	lightweave->monsterinfo.aiflags |= AI_GOOD_GUY;
 
 	lightweave->kill_xp = 0;
 
-	T_RadiusDamage(lightweave, lightweave, 0, self, 500, MOD_R_SPLASH);
+	lightweave->think = LightWeaveDecay;
+	lightweave->nextthink = level.time + 5;
+
+	T_RadiusDamage(lightweave, lightweave, 0, self, 1000, MOD_R_SPLASH);
 	gi.linkentity(lightweave);
 }
 
