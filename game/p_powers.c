@@ -176,6 +176,8 @@ void LightWeaving(edict_t *self)
 	lightweave->think = LightWeaveDecay;
 	lightweave->nextthink = level.time + 5;
 
+	lightweave->s.modelindex = gi.modelindex("models/objects/cube/tris.md2");
+
 	T_RadiusDamage(lightweave, lightweave, 0, self, 1000, MOD_R_SPLASH);
 	gi.linkentity(lightweave);
 }
