@@ -965,6 +965,7 @@ struct gclient_s
 	qboolean	beacontrigger;
 };
 
+
 struct edict_s
 {
 	entity_state_t	s;

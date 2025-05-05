@@ -1448,7 +1448,7 @@ always owned, never in the world
 /* precache */ "models/objects/grenade/tris.md2 weapons/grenlf1a.wav weapons/grenlr1b.wav weapons/grenlb1b.wav"
 	},
 
-	/*QUAKED weapon_grenadelauncher (.3 .3 1) (-16 -16 -16) (16 16 16)
+	/*QUAKED weapon_tpgun (.3 .3 1) (-16 -16 -16) (16 16 16)
 */
 	{
 		"weapon_tpgun",

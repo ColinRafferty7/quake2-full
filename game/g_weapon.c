@@ -915,6 +915,25 @@ void fire_bfg (edict_t *self, vec3_t start, vec3_t dir, int damage, int speed, f
 	gi.linkentity (bfg);
 }
 
+void Beacon_TP(edict_t *ent)
+{
+	VectorCopy(ent->s.origin, ent->owner->s.origin);
+	ent->owner->s.origin[2] -= ent->owner->mins[2];
+	G_FreeEdict (ent);
+}
+
+void beacon_think(edict_t *ent)
+{
+	if (ent->owner->client->beacontrigger == true)
+	{
+		gi.cprintf(ent->owner, 2, "2\n");
+		ent->owner->client->beacontrigger = false;
+		Beacon_TP(ent);
+	}
+	else
+		ent->nextthink = level.time + FRAMETIME;
+}
+
 void beacon_touch(edict_t* ent, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
 	if (strcmp(other->classname, "worldspawn") == 0)
@@ -947,9 +966,13 @@ void fire_beacon(edict_t* self, vec3_t start, vec3_t aimdir, int damage, int spe
 	grenade->s.modelindex = gi.modelindex("models/objects/grenade/tris.md2");
 	grenade->owner = self;
 	grenade->touch = beacon_touch;
+	grenade->think = beacon_think;
+	grenade->nextthink = level.time + FRAMETIME;
 	grenade->dmg = damage;
 	grenade->dmg_radius = damage_radius;
 	grenade->classname = "grenade";
+
+	self->client->hasbeacon = true;
 
 	gi.linkentity(grenade);
 }
