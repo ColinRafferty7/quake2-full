@@ -12,17 +12,18 @@ void RockThink(edict_t* self, edict_t* other)
 	float heightDif;
 	heightDif = (self->owner->s.origin[2] + self->owner->mins[2]) - (self->s.origin[2] + self->maxs[2]);
 	gi.cprintf(self->owner, 2, "%f\n", heightDif);
-	if (heightDif < 0.0f && heightDif > -100.0f)
+	/*
+	if ()
 	{
 		self->owner->s.origin[2] = self->s.origin[2] + self->maxs[2] + self->owner->maxs[2];
 	}
+	*/
 	self->count++;
 
 	if (self->count > 2)
 	{
 		self->nextthink = 0;
 		self->think = NULL;
-		G_FreeEdict(self);
 	}
 	else
 	{
@@ -48,6 +49,16 @@ void SpawnRock(edict_t* self, vec3_t origin)
 	VectorSet(rock->mins, -15, -15, 0);
 	VectorSet(rock->maxs, 15, 15, 50);
 	gi.linkentity(rock);
+}
+
+void SpawnMonster(edict_t *self, vec_t *origin)
+{
+	edict_t *mon;
+	mon = G_Spawn();
+
+	VectorCopy(origin, mon->s.origin);
+	SP_monster_soldier(mon);
+	mon->s.origin[2] -= mon->mins[2];
 }
 
 void Geomancy(edict_t *self)
@@ -80,7 +91,8 @@ void Geomancy(edict_t *self)
 	if (hitscan.ent)
 	{
 		gi.cprintf(self, 2, "%s\n", hitscan.ent->classname);
-		SpawnRock(self, hitscan.endpos);
+		//SpawnRock(self, hitscan.endpos);
+		SpawnMonster(self, hitscan.endpos);
 	}
 }
 
