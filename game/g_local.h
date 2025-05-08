@@ -811,6 +811,11 @@ void M_MoveToGoal (edict_t *ent, float dist);
 void M_ChangeYaw (edict_t *ent);
 
 //
+// m_singer.c
+//
+void SP_monster_singer(edict_t *self);
+
+//
 // m_soldier.c
 //
 void SP_monster_soldier(edict_t* self);
