@@ -2,12 +2,7 @@
 
 void RockTouch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 {
-	float heightDif;
-	heightDif = (other->s.origin[2] + other->mins[2]) - (self->s.origin[2] + self->maxs[2]);
-	if (heightDif < 0 && heightDif > -10)
-	{
-		other->s.origin[2] = self->s.origin[2] + self->maxs[2] + other->mins[2];
-	}
+
 }
 
 void RockThink(edict_t* self, edict_t* other)
@@ -15,14 +10,24 @@ void RockThink(edict_t* self, edict_t* other)
 	self->s.origin[2] += 30;
 
 	float heightDif;
-	heightDif = (other->s.origin[2] + other->mins[2]) - (self->s.origin[2] + self->maxs[2]);
-	if (heightDif < 0 && heightDif > -10)
+	heightDif = (self->owner->s.origin[2] + self->owner->mins[2]) - (self->s.origin[2] + self->maxs[2]);
+	gi.cprintf(self->owner, 2, "%f\n", heightDif);
+	if (heightDif < 0.0f && heightDif > -100.0f)
 	{
-		other->s.origin[2] = self->s.origin[2] + self->maxs[2] + other->mins[2];
-		gi.cprintf(self->owner, 2, "%d\n", heightDif);
+		self->owner->s.origin[2] = self->s.origin[2] + self->maxs[2] + self->owner->maxs[2];
 	}
+	self->count++;
 
-	self->nextthink = level.time + FRAMETIME;
+	if (self->count > 2)
+	{
+		self->nextthink = 0;
+		self->think = NULL;
+		G_FreeEdict(self);
+	}
+	else
+	{
+		self->nextthink = level.time + FRAMETIME;
+	}
 }
 
 void SpawnRock(edict_t* self, vec3_t origin)
