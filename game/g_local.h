@@ -826,6 +826,12 @@ void SP_monster_magnified(edict_t *self);
 void SP_monster_singer(edict_t *self);
 
 //
+// m_smokeform.c
+//
+void SP_monster_smokeform(edict_t* self);
+
+
+//
 // m_soldier.c
 //
 void SP_monster_soldier(edict_t* self);

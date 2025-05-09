@@ -57,7 +57,7 @@ void SpawnMonster(edict_t *self, vec_t *origin)
 	mon = G_Spawn();
 
 	VectorCopy(origin, mon->s.origin);
-	SP_monster_stormform(mon);
+	SP_monster_smokeform(mon);
 	mon->s.origin[2] -= mon->mins[2];
 }
 
