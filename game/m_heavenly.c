@@ -20,13 +20,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 /*
 ==============================================================================
 
-singer
+heavenly
 
 ==============================================================================
 */
 
 #include "g_local.h"
-#include "m_singer.h"
+#include "m_heavenly.h"
 
 
 static int	sound_idle;
@@ -41,13 +41,13 @@ static int	sound_death_ss;
 static int	sound_cock;
 
 
-void singer_idle(edict_t* self)
+void heavenly_idle(edict_t* self)
 {
 	if (random() > 0.8)
 		gi.sound(self, CHAN_VOICE, sound_idle, 1, ATTN_IDLE, 0);
 }
 
-void singer_cock(edict_t* self)
+void heavenly_cock(edict_t* self)
 {
 	if (self->s.frame == FRAME_stand322)
 		gi.sound(self, CHAN_WEAPON, sound_cock, 1, ATTN_IDLE, 0);
@@ -58,11 +58,11 @@ void singer_cock(edict_t* self)
 
 // STAND
 
-void singer_stand(edict_t* self);
+void heavenly_stand(edict_t* self);
 
-mframe_t singer_frames_stand1[] =
+mframe_t heavenly_frames_stand1[] =
 {
-	ai_stand, 0, singer_idle,
+	ai_stand, 0, heavenly_idle,
 	ai_stand, 0, NULL,
 	ai_stand, 0, NULL,
 	ai_stand, 0, NULL,
@@ -95,9 +95,9 @@ mframe_t singer_frames_stand1[] =
 	ai_stand, 0, NULL,
 	ai_stand, 0, NULL
 };
-mmove_t singer_move_stand1 = { FRAME_stand101, FRAME_stand130, singer_frames_stand1, singer_stand };
+mmove_t heavenly_move_stand1 = { FRAME_stand101, FRAME_stand130, heavenly_frames_stand1, heavenly_stand };
 
-mframe_t singer_frames_stand3[] =
+mframe_t heavenly_frames_stand3[] =
 {
 	ai_stand, 0, NULL,
 	ai_stand, 0, NULL,
@@ -122,7 +122,7 @@ mframe_t singer_frames_stand3[] =
 	ai_stand, 0, NULL,
 
 	ai_stand, 0, NULL,
-	ai_stand, 0, singer_cock,
+	ai_stand, 0, heavenly_cock,
 	ai_stand, 0, NULL,
 	ai_stand, 0, NULL,
 	ai_stand, 0, NULL,
@@ -142,10 +142,10 @@ mframe_t singer_frames_stand3[] =
 	ai_stand, 0, NULL,
 	ai_stand, 0, NULL
 };
-mmove_t singer_move_stand3 = { FRAME_stand301, FRAME_stand339, singer_frames_stand3, singer_stand };
+mmove_t heavenly_move_stand3 = { FRAME_stand301, FRAME_stand339, heavenly_frames_stand3, heavenly_stand };
 
 #if 0
-mframe_t singer_frames_stand4[] =
+mframe_t heavenly_frames_stand4[] =
 {
 	ai_stand, 0, NULL,
 	ai_stand, 0, NULL,
@@ -205,15 +205,15 @@ mframe_t singer_frames_stand4[] =
 	ai_stand, 0, NULL,
 	ai_stand, 0, NULL
 };
-mmove_t singer_move_stand4 = { FRAME_stand401, FRAME_stand452, singer_frames_stand4, NULL };
+mmove_t heavenly_move_stand4 = { FRAME_stand401, FRAME_stand452, heavenly_frames_stand4, NULL };
 #endif
 
-void singer_stand(edict_t* self)
+void heavenly_stand(edict_t* self)
 {
-	if ((self->monsterinfo.currentmove == &singer_move_stand3) || (random() < 0.8))
-		self->monsterinfo.currentmove = &singer_move_stand1;
+	if ((self->monsterinfo.currentmove == &heavenly_move_stand3) || (random() < 0.8))
+		self->monsterinfo.currentmove = &heavenly_move_stand1;
 	else
-		self->monsterinfo.currentmove = &singer_move_stand3;
+		self->monsterinfo.currentmove = &heavenly_move_stand3;
 }
 
 
@@ -221,13 +221,13 @@ void singer_stand(edict_t* self)
 // WALK
 //
 
-void singer_walk1_random(edict_t* self)
+void heavenly_walk1_random(edict_t* self)
 {
 	if (random() > 0.1)
 		self->monsterinfo.nextframe = FRAME_walk101;
 }
 
-mframe_t singer_frames_walk1[] =
+mframe_t heavenly_frames_walk1[] =
 {
 	ai_walk, 3,  NULL,
 	ai_walk, 6,  NULL,
@@ -238,7 +238,7 @@ mframe_t singer_frames_walk1[] =
 	ai_walk, 6,  NULL,
 	ai_walk, 5,  NULL,
 	ai_walk, 3,  NULL,
-	ai_walk, -1, singer_walk1_random,
+	ai_walk, -1, heavenly_walk1_random,
 	ai_walk, 0,  NULL,
 	ai_walk, 0,  NULL,
 	ai_walk, 0,  NULL,
@@ -263,9 +263,9 @@ mframe_t singer_frames_walk1[] =
 	ai_walk, 0,  NULL,
 	ai_walk, 0,  NULL
 };
-mmove_t singer_move_walk1 = { FRAME_walk101, FRAME_walk133, singer_frames_walk1, NULL };
+mmove_t heavenly_move_walk1 = { FRAME_walk101, FRAME_walk133, heavenly_frames_walk1, NULL };
 
-mframe_t singer_frames_walk2[] =
+mframe_t heavenly_frames_walk2[] =
 {
 	ai_walk, 4,  NULL,
 	ai_walk, 4,  NULL,
@@ -278,14 +278,14 @@ mframe_t singer_frames_walk2[] =
 	ai_walk, 6,  NULL,
 	ai_walk, 7,  NULL
 };
-mmove_t singer_move_walk2 = { FRAME_walk209, FRAME_walk218, singer_frames_walk2, NULL };
+mmove_t heavenly_move_walk2 = { FRAME_walk209, FRAME_walk218, heavenly_frames_walk2, NULL };
 
-void singer_walk(edict_t* self)
+void heavenly_walk(edict_t* self)
 {
 	if (random() < 0.5)
-		self->monsterinfo.currentmove = &singer_move_walk1;
+		self->monsterinfo.currentmove = &heavenly_move_walk1;
 	else
-		self->monsterinfo.currentmove = &singer_move_walk2;
+		self->monsterinfo.currentmove = &heavenly_move_walk2;
 }
 
 
@@ -293,16 +293,16 @@ void singer_walk(edict_t* self)
 // RUN
 //
 
-void singer_run(edict_t* self);
+void heavenly_run(edict_t* self);
 
-mframe_t singer_frames_start_run[] =
+mframe_t heavenly_frames_start_run[] =
 {
 	ai_run, 7,  NULL,
 	ai_run, 5,  NULL
 };
-mmove_t singer_move_start_run = { FRAME_run01, FRAME_run02, singer_frames_start_run, singer_run };
+mmove_t heavenly_move_start_run = { FRAME_run01, FRAME_run02, heavenly_frames_start_run, heavenly_run };
 
-mframe_t singer_frames_run[] =
+mframe_t heavenly_frames_run[] =
 {
 	ai_run, 10, NULL,
 	ai_run, 11, NULL,
@@ -311,25 +311,25 @@ mframe_t singer_frames_run[] =
 	ai_run, 10, NULL,
 	ai_run, 15, NULL
 };
-mmove_t singer_move_run = { FRAME_run03, FRAME_run08, singer_frames_run, NULL };
+mmove_t heavenly_move_run = { FRAME_run03, FRAME_run08, heavenly_frames_run, NULL };
 
-void singer_run(edict_t* self)
+void heavenly_run(edict_t* self)
 {
 	if (self->monsterinfo.aiflags & AI_STAND_GROUND)
 	{
-		self->monsterinfo.currentmove = &singer_move_stand1;
+		self->monsterinfo.currentmove = &heavenly_move_stand1;
 		return;
 	}
 
-	if (self->monsterinfo.currentmove == &singer_move_walk1 ||
-		self->monsterinfo.currentmove == &singer_move_walk2 ||
-		self->monsterinfo.currentmove == &singer_move_start_run)
+	if (self->monsterinfo.currentmove == &heavenly_move_walk1 ||
+		self->monsterinfo.currentmove == &heavenly_move_walk2 ||
+		self->monsterinfo.currentmove == &heavenly_move_start_run)
 	{
-		self->monsterinfo.currentmove = &singer_move_run;
+		self->monsterinfo.currentmove = &heavenly_move_run;
 	}
 	else
 	{
-		self->monsterinfo.currentmove = &singer_move_start_run;
+		self->monsterinfo.currentmove = &heavenly_move_start_run;
 	}
 }
 
@@ -338,7 +338,7 @@ void singer_run(edict_t* self)
 // PAIN
 //
 
-mframe_t singer_frames_pain1[] =
+mframe_t heavenly_frames_pain1[] =
 {
 	ai_move, -3, NULL,
 	ai_move, 4,  NULL,
@@ -346,9 +346,9 @@ mframe_t singer_frames_pain1[] =
 	ai_move, 1,  NULL,
 	ai_move, 0,  NULL
 };
-mmove_t singer_move_pain1 = { FRAME_pain101, FRAME_pain105, singer_frames_pain1, singer_run };
+mmove_t heavenly_move_pain1 = { FRAME_pain101, FRAME_pain105, heavenly_frames_pain1, heavenly_run };
 
-mframe_t singer_frames_pain2[] =
+mframe_t heavenly_frames_pain2[] =
 {
 	ai_move, -13, NULL,
 	ai_move, -1,  NULL,
@@ -358,9 +358,9 @@ mframe_t singer_frames_pain2[] =
 	ai_move, 3,   NULL,
 	ai_move, 2,   NULL
 };
-mmove_t singer_move_pain2 = { FRAME_pain201, FRAME_pain207, singer_frames_pain2, singer_run };
+mmove_t heavenly_move_pain2 = { FRAME_pain201, FRAME_pain207, heavenly_frames_pain2, heavenly_run };
 
-mframe_t singer_frames_pain3[] =
+mframe_t heavenly_frames_pain3[] =
 {
 	ai_move, -8, NULL,
 	ai_move, 10, NULL,
@@ -381,9 +381,9 @@ mframe_t singer_frames_pain3[] =
 	ai_move, 3,  NULL,
 	ai_move, 2,  NULL
 };
-mmove_t singer_move_pain3 = { FRAME_pain301, FRAME_pain318, singer_frames_pain3, singer_run };
+mmove_t heavenly_move_pain3 = { FRAME_pain301, FRAME_pain318, heavenly_frames_pain3, heavenly_run };
 
-mframe_t singer_frames_pain4[] =
+mframe_t heavenly_frames_pain4[] =
 {
 	ai_move, 0,   NULL,
 	ai_move, 0,   NULL,
@@ -403,10 +403,10 @@ mframe_t singer_frames_pain4[] =
 	ai_move, 2,   NULL,
 	ai_move, 0,   NULL
 };
-mmove_t singer_move_pain4 = { FRAME_pain401, FRAME_pain417, singer_frames_pain4, singer_run };
+mmove_t heavenly_move_pain4 = { FRAME_pain401, FRAME_pain417, heavenly_frames_pain4, heavenly_run };
 
 
-void singer_pain(edict_t* self, edict_t* other, float kick, int damage)
+void heavenly_pain(edict_t* self, edict_t* other, float kick, int damage)
 {
 	float	r;
 	int		n;
@@ -416,8 +416,8 @@ void singer_pain(edict_t* self, edict_t* other, float kick, int damage)
 
 	if (level.time < self->pain_debounce_time)
 	{
-		if ((self->velocity[2] > 100) && ((self->monsterinfo.currentmove == &singer_move_pain1) || (self->monsterinfo.currentmove == &singer_move_pain2) || (self->monsterinfo.currentmove == &singer_move_pain3)))
-			self->monsterinfo.currentmove = &singer_move_pain4;
+		if ((self->velocity[2] > 100) && ((self->monsterinfo.currentmove == &heavenly_move_pain1) || (self->monsterinfo.currentmove == &heavenly_move_pain2) || (self->monsterinfo.currentmove == &heavenly_move_pain3)))
+			self->monsterinfo.currentmove = &heavenly_move_pain4;
 		return;
 	}
 
@@ -433,7 +433,7 @@ void singer_pain(edict_t* self, edict_t* other, float kick, int damage)
 
 	if (self->velocity[2] > 100)
 	{
-		self->monsterinfo.currentmove = &singer_move_pain4;
+		self->monsterinfo.currentmove = &heavenly_move_pain4;
 		return;
 	}
 
@@ -443,11 +443,11 @@ void singer_pain(edict_t* self, edict_t* other, float kick, int damage)
 	r = random();
 
 	if (r < 0.33)
-		self->monsterinfo.currentmove = &singer_move_pain1;
+		self->monsterinfo.currentmove = &heavenly_move_pain1;
 	else if (r < 0.66)
-		self->monsterinfo.currentmove = &singer_move_pain2;
+		self->monsterinfo.currentmove = &heavenly_move_pain2;
 	else
-		self->monsterinfo.currentmove = &singer_move_pain3;
+		self->monsterinfo.currentmove = &heavenly_move_pain3;
 }
 
 
@@ -459,7 +459,7 @@ static int blaster_flash[] = { MZ2_SOLDIER_BLASTER_1, MZ2_SOLDIER_BLASTER_2, MZ2
 static int shotgun_flash[] = { MZ2_SOLDIER_SHOTGUN_1, MZ2_SOLDIER_SHOTGUN_2, MZ2_SOLDIER_SHOTGUN_3, MZ2_SOLDIER_SHOTGUN_4, MZ2_SOLDIER_SHOTGUN_5, MZ2_SOLDIER_SHOTGUN_6, MZ2_SOLDIER_SHOTGUN_7, MZ2_SOLDIER_SHOTGUN_8 };
 static int machinegun_flash[] = { MZ2_SOLDIER_MACHINEGUN_1, MZ2_SOLDIER_MACHINEGUN_2, MZ2_SOLDIER_MACHINEGUN_3, MZ2_SOLDIER_MACHINEGUN_4, MZ2_SOLDIER_MACHINEGUN_5, MZ2_SOLDIER_MACHINEGUN_6, MZ2_SOLDIER_MACHINEGUN_7, MZ2_SOLDIER_MACHINEGUN_8 };
 
-void singer_fire(edict_t* self, int flash_number)
+void heavenly_fire(edict_t* self, int flash_number)
 {
 	vec3_t	start;
 	vec3_t	forward, right, up;
@@ -525,12 +525,12 @@ void singer_fire(edict_t* self, int flash_number)
 
 // ATTACK1 (blaster/shotgun)
 
-void singer_fire1(edict_t* self)
+void heavenly_fire1(edict_t* self)
 {
-	singer_fire(self, 0);
+	heavenly_fire(self, 0);
 }
 
-void singer_attack1_refire1(edict_t* self)
+void heavenly_attack1_refire1(edict_t* self)
 {
 	if (self->s.skinnum > 1)
 		return;
@@ -544,7 +544,7 @@ void singer_attack1_refire1(edict_t* self)
 		self->monsterinfo.nextframe = FRAME_attak110;
 }
 
-void singer_attack1_refire2(edict_t* self)
+void heavenly_attack1_refire2(edict_t* self)
 {
 	if (self->s.skinnum < 2)
 		return;
@@ -556,31 +556,31 @@ void singer_attack1_refire2(edict_t* self)
 		self->monsterinfo.nextframe = FRAME_attak102;
 }
 
-mframe_t singer_frames_attack1[] =
+mframe_t heavenly_frames_attack1[] =
 {
 	ai_charge, 0,  NULL,
 	ai_charge, 0,  NULL,
-	ai_charge, 0,  singer_fire1,
+	ai_charge, 0,  heavenly_fire1,
 	ai_charge, 0,  NULL,
 	ai_charge, 0,  NULL,
-	ai_charge, 0,  singer_attack1_refire1,
+	ai_charge, 0,  heavenly_attack1_refire1,
 	ai_charge, 0,  NULL,
-	ai_charge, 0,  singer_cock,
-	ai_charge, 0,  singer_attack1_refire2,
+	ai_charge, 0,  heavenly_cock,
+	ai_charge, 0,  heavenly_attack1_refire2,
 	ai_charge, 0,  NULL,
 	ai_charge, 0,  NULL,
 	ai_charge, 0,  NULL
 };
-mmove_t singer_move_attack1 = { FRAME_attak101, FRAME_attak112, singer_frames_attack1, singer_run };
+mmove_t heavenly_move_attack1 = { FRAME_attak101, FRAME_attak112, heavenly_frames_attack1, heavenly_run };
 
 // ATTACK2 (blaster/shotgun)
 
-void singer_fire2(edict_t* self)
+void heavenly_fire2(edict_t* self)
 {
-	singer_fire(self, 1);
+	heavenly_fire(self, 1);
 }
 
-void singer_attack2_refire1(edict_t* self)
+void heavenly_attack2_refire1(edict_t* self)
 {
 	if (self->s.skinnum > 1)
 		return;
@@ -594,7 +594,7 @@ void singer_attack2_refire1(edict_t* self)
 		self->monsterinfo.nextframe = FRAME_attak216;
 }
 
-void singer_attack2_refire2(edict_t* self)
+void heavenly_attack2_refire2(edict_t* self)
 {
 	if (self->s.skinnum < 2)
 		return;
@@ -606,32 +606,32 @@ void singer_attack2_refire2(edict_t* self)
 		self->monsterinfo.nextframe = FRAME_attak204;
 }
 
-mframe_t singer_frames_attack2[] =
+mframe_t heavenly_frames_attack2[] =
 {
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
-	ai_charge, 0, singer_fire2,
+	ai_charge, 0, heavenly_fire2,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
-	ai_charge, 0, singer_attack2_refire1,
+	ai_charge, 0, heavenly_attack2_refire1,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
-	ai_charge, 0, singer_cock,
+	ai_charge, 0, heavenly_cock,
 	ai_charge, 0, NULL,
-	ai_charge, 0, singer_attack2_refire2,
+	ai_charge, 0, heavenly_attack2_refire2,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL
 };
-mmove_t singer_move_attack2 = { FRAME_attak201, FRAME_attak218, singer_frames_attack2, singer_run };
+mmove_t heavenly_move_attack2 = { FRAME_attak201, FRAME_attak218, heavenly_frames_attack2, heavenly_run };
 
 // ATTACK3 (duck and shoot)
 
-void singer_duck_down(edict_t* self)
+void heavenly_duck_down(edict_t* self)
 {
 	if (self->monsterinfo.aiflags & AI_DUCKED)
 		return;
@@ -642,7 +642,7 @@ void singer_duck_down(edict_t* self)
 	gi.linkentity(self);
 }
 
-void singer_duck_up(edict_t* self)
+void heavenly_duck_up(edict_t* self)
 {
 	self->monsterinfo.aiflags &= ~AI_DUCKED;
 	self->maxs[2] += 32;
@@ -650,37 +650,37 @@ void singer_duck_up(edict_t* self)
 	gi.linkentity(self);
 }
 
-void singer_fire3(edict_t* self)
+void heavenly_fire3(edict_t* self)
 {
-	singer_duck_down(self);
-	singer_fire(self, 2);
+	heavenly_duck_down(self);
+	heavenly_fire(self, 2);
 }
 
-void singer_attack3_refire(edict_t* self)
+void heavenly_attack3_refire(edict_t* self)
 {
 	if ((level.time + 0.4) < self->monsterinfo.pausetime)
 		self->monsterinfo.nextframe = FRAME_attak303;
 }
 
-mframe_t singer_frames_attack3[] =
+mframe_t heavenly_frames_attack3[] =
 {
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
-	ai_charge, 0, singer_fire3,
+	ai_charge, 0, heavenly_fire3,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
-	ai_charge, 0, singer_attack3_refire,
-	ai_charge, 0, singer_duck_up,
+	ai_charge, 0, heavenly_attack3_refire,
+	ai_charge, 0, heavenly_duck_up,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL
 };
-mmove_t singer_move_attack3 = { FRAME_attak301, FRAME_attak309, singer_frames_attack3, singer_run };
+mmove_t heavenly_move_attack3 = { FRAME_attak301, FRAME_attak309, heavenly_frames_attack3, heavenly_run };
 
 // ATTACK4 (machinegun)
 
-void singer_fire4(edict_t* self)
+void heavenly_fire4(edict_t* self)
 {
-	singer_fire(self, 3);
+	heavenly_fire(self, 3);
 	//
 	//	if (self->enemy->health <= 0)
 	//		return;
@@ -689,26 +689,26 @@ void singer_fire4(edict_t* self)
 	//		self->monsterinfo.nextframe = FRAME_attak402;
 }
 
-mframe_t singer_frames_attack4[] =
+mframe_t heavenly_frames_attack4[] =
 {
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
-	ai_charge, 0, singer_fire4,
+	ai_charge, 0, heavenly_fire4,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL
 };
-mmove_t singer_move_attack4 = { FRAME_attak401, FRAME_attak406, singer_frames_attack4, singer_run };
+mmove_t heavenly_move_attack4 = { FRAME_attak401, FRAME_attak406, heavenly_frames_attack4, heavenly_run };
 
 #if 0
 // ATTACK5 (prone)
 
-void singer_fire5(edict_t* self)
+void heavenly_fire5(edict_t* self)
 {
-	singer_fire(self, 4);
+	heavenly_fire(self, 4);
 }
 
-void singer_attack5_refire(edict_t* self)
+void heavenly_attack5_refire(edict_t* self)
 {
 	if (self->enemy->health <= 0)
 		return;
@@ -717,28 +717,28 @@ void singer_attack5_refire(edict_t* self)
 		self->monsterinfo.nextframe = FRAME_attak505;
 }
 
-mframe_t singer_frames_attack5[] =
+mframe_t heavenly_frames_attack5[] =
 {
 	ai_charge, 8, NULL,
 	ai_charge, 8, NULL,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
-	ai_charge, 0, singer_fire5,
+	ai_charge, 0, heavenly_fire5,
 	ai_charge, 0, NULL,
 	ai_charge, 0, NULL,
-	ai_charge, 0, singer_attack5_refire
+	ai_charge, 0, heavenly_attack5_refire
 };
-mmove_t singer_move_attack5 = { FRAME_attak501, FRAME_attak508, singer_frames_attack5, singer_run };
+mmove_t heavenly_move_attack5 = { FRAME_attak501, FRAME_attak508, heavenly_frames_attack5, heavenly_run };
 #endif
 
 // ATTACK6 (run & shoot)
 
-void singer_fire8(edict_t* self)
+void heavenly_fire8(edict_t* self)
 {
-	singer_fire(self, 7);
+	heavenly_fire(self, 7);
 }
 
-void singer_attack6_refire(edict_t* self)
+void heavenly_attack6_refire(edict_t* self)
 {
 	if (self->enemy->health <= 0)
 		return;
@@ -750,12 +750,12 @@ void singer_attack6_refire(edict_t* self)
 		self->monsterinfo.nextframe = FRAME_runs03;
 }
 
-mframe_t singer_frames_attack6[] =
+mframe_t heavenly_frames_attack6[] =
 {
 	ai_charge, 10, NULL,
 	ai_charge,  4, NULL,
 	ai_charge, 12, NULL,
-	ai_charge, 11, singer_fire8,
+	ai_charge, 11, heavenly_fire8,
 	ai_charge, 13, NULL,
 	ai_charge, 18, NULL,
 	ai_charge, 15, NULL,
@@ -765,22 +765,22 @@ mframe_t singer_frames_attack6[] =
 	ai_charge, 11, NULL,
 	ai_charge, 12, NULL,
 	ai_charge, 12, NULL,
-	ai_charge, 17, singer_attack6_refire
+	ai_charge, 17, heavenly_attack6_refire
 };
-mmove_t singer_move_attack6 = { FRAME_runs01, FRAME_runs14, singer_frames_attack6, singer_run };
+mmove_t heavenly_move_attack6 = { FRAME_runs01, FRAME_runs14, heavenly_frames_attack6, heavenly_run };
 
-void singer_attack(edict_t* self)
+void heavenly_attack(edict_t* self)
 {
 	if (self->s.skinnum < 4)
 	{
 		if (random() < 0.5)
-			self->monsterinfo.currentmove = &singer_move_attack1;
+			self->monsterinfo.currentmove = &heavenly_move_attack1;
 		else
-			self->monsterinfo.currentmove = &singer_move_attack2;
+			self->monsterinfo.currentmove = &heavenly_move_attack2;
 	}
 	else
 	{
-		self->monsterinfo.currentmove = &singer_move_attack4;
+		self->monsterinfo.currentmove = &heavenly_move_attack4;
 	}
 }
 
@@ -789,7 +789,7 @@ void singer_attack(edict_t* self)
 // SIGHT
 //
 
-void singer_sight(edict_t* self, edict_t* other)
+void heavenly_sight(edict_t* self, edict_t* other)
 {
 	if (random() < 0.5)
 		gi.sound(self, CHAN_VOICE, sound_sight1, 1, ATTN_NORM, 0);
@@ -799,7 +799,7 @@ void singer_sight(edict_t* self, edict_t* other)
 	if ((skill->value > 0) && (range(self, self->enemy) >= RANGE_MID))
 	{
 		if (random() > 0.5)
-			self->monsterinfo.currentmove = &singer_move_attack6;
+			self->monsterinfo.currentmove = &heavenly_move_attack6;
 	}
 }
 
@@ -807,7 +807,7 @@ void singer_sight(edict_t* self, edict_t* other)
 // DUCK
 //
 
-void singer_duck_hold(edict_t* self)
+void heavenly_duck_hold(edict_t* self)
 {
 	if (level.time >= self->monsterinfo.pausetime)
 		self->monsterinfo.aiflags &= ~AI_HOLD_FRAME;
@@ -815,17 +815,17 @@ void singer_duck_hold(edict_t* self)
 		self->monsterinfo.aiflags |= AI_HOLD_FRAME;
 }
 
-mframe_t singer_frames_duck[] =
+mframe_t heavenly_frames_duck[] =
 {
-	ai_move, 5, singer_duck_down,
-	ai_move, -1, singer_duck_hold,
+	ai_move, 5, heavenly_duck_down,
+	ai_move, -1, heavenly_duck_hold,
 	ai_move, 1,  NULL,
-	ai_move, 0,  singer_duck_up,
+	ai_move, 0,  heavenly_duck_up,
 	ai_move, 5,  NULL
 };
-mmove_t singer_move_duck = { FRAME_duck01, FRAME_duck05, singer_frames_duck, singer_run };
+mmove_t heavenly_move_duck = { FRAME_duck01, FRAME_duck05, heavenly_frames_duck, heavenly_run };
 
-void singer_dodge(edict_t* self, edict_t* attacker, float eta)
+void heavenly_dodge(edict_t* self, edict_t* attacker, float eta)
 {
 	float	r;
 
@@ -838,7 +838,7 @@ void singer_dodge(edict_t* self, edict_t* attacker, float eta)
 
 	if (skill->value == 0)
 	{
-		self->monsterinfo.currentmove = &singer_move_duck;
+		self->monsterinfo.currentmove = &heavenly_move_duck;
 		return;
 	}
 
@@ -848,22 +848,22 @@ void singer_dodge(edict_t* self, edict_t* attacker, float eta)
 	if (skill->value == 1)
 	{
 		if (r > 0.33)
-			self->monsterinfo.currentmove = &singer_move_duck;
+			self->monsterinfo.currentmove = &heavenly_move_duck;
 		else
-			self->monsterinfo.currentmove = &singer_move_attack3;
+			self->monsterinfo.currentmove = &heavenly_move_attack3;
 		return;
 	}
 
 	if (skill->value >= 2)
 	{
 		if (r > 0.66)
-			self->monsterinfo.currentmove = &singer_move_duck;
+			self->monsterinfo.currentmove = &heavenly_move_duck;
 		else
-			self->monsterinfo.currentmove = &singer_move_attack3;
+			self->monsterinfo.currentmove = &heavenly_move_attack3;
 		return;
 	}
 
-	self->monsterinfo.currentmove = &singer_move_attack3;
+	self->monsterinfo.currentmove = &heavenly_move_attack3;
 }
 
 
@@ -871,17 +871,17 @@ void singer_dodge(edict_t* self, edict_t* attacker, float eta)
 // DEATH
 //
 
-void singer_fire6(edict_t* self)
+void heavenly_fire6(edict_t* self)
 {
-	singer_fire(self, 5);
+	heavenly_fire(self, 5);
 }
 
-void singer_fire7(edict_t* self)
+void heavenly_fire7(edict_t* self)
 {
-	singer_fire(self, 6);
+	heavenly_fire(self, 6);
 }
 
-void singer_dead(edict_t* self)
+void heavenly_dead(edict_t* self)
 {
 	VectorSet(self->mins, -16, -16, -24);
 	VectorSet(self->maxs, 16, 16, -8);
@@ -891,7 +891,7 @@ void singer_dead(edict_t* self)
 	gi.linkentity(self);
 }
 
-mframe_t singer_frames_death1[] =
+mframe_t heavenly_frames_death1[] =
 {
 	ai_move, 0,   NULL,
 	ai_move, -10, NULL,
@@ -916,10 +916,10 @@ mframe_t singer_frames_death1[] =
 	ai_move, 0,   NULL,
 
 	ai_move, 0,   NULL,
-	ai_move, 0,   singer_fire6,
+	ai_move, 0,   heavenly_fire6,
 	ai_move, 0,   NULL,
 	ai_move, 0,   NULL,
-	ai_move, 0,   singer_fire7,
+	ai_move, 0,   heavenly_fire7,
 	ai_move, 0,   NULL,
 	ai_move, 0,   NULL,
 	ai_move, 0,   NULL,
@@ -933,9 +933,9 @@ mframe_t singer_frames_death1[] =
 	ai_move, 0,   NULL,
 	ai_move, 0,   NULL
 };
-mmove_t singer_move_death1 = { FRAME_death101, FRAME_death136, singer_frames_death1, singer_dead };
+mmove_t heavenly_move_death1 = { FRAME_death101, FRAME_death136, heavenly_frames_death1, heavenly_dead };
 
-mframe_t singer_frames_death2[] =
+mframe_t heavenly_frames_death2[] =
 {
 	ai_move, -5,  NULL,
 	ai_move, -5,  NULL,
@@ -976,9 +976,9 @@ mframe_t singer_frames_death2[] =
 	ai_move, 0,   NULL,
 	ai_move, 0,   NULL
 };
-mmove_t singer_move_death2 = { FRAME_death201, FRAME_death235, singer_frames_death2, singer_dead };
+mmove_t heavenly_move_death2 = { FRAME_death201, FRAME_death235, heavenly_frames_death2, heavenly_dead };
 
-mframe_t singer_frames_death3[] =
+mframe_t heavenly_frames_death3[] =
 {
 	ai_move, -5,  NULL,
 	ai_move, -5,  NULL,
@@ -1030,9 +1030,9 @@ mframe_t singer_frames_death3[] =
 	ai_move, 0,   NULL,
 	ai_move, 0,   NULL,
 };
-mmove_t singer_move_death3 = { FRAME_death301, FRAME_death345, singer_frames_death3, singer_dead };
+mmove_t heavenly_move_death3 = { FRAME_death301, FRAME_death345, heavenly_frames_death3, heavenly_dead };
 
-mframe_t singer_frames_death4[] =
+mframe_t heavenly_frames_death4[] =
 {
 	ai_move, 0,   NULL,
 	ai_move, 0,   NULL,
@@ -1093,9 +1093,9 @@ mframe_t singer_frames_death4[] =
 	ai_move, 0,   NULL,
 	ai_move, 0,   NULL
 };
-mmove_t singer_move_death4 = { FRAME_death401, FRAME_death453, singer_frames_death4, singer_dead };
+mmove_t heavenly_move_death4 = { FRAME_death401, FRAME_death453, heavenly_frames_death4, heavenly_dead };
 
-mframe_t singer_frames_death5[] =
+mframe_t heavenly_frames_death5[] =
 {
 	ai_move, -5,  NULL,
 	ai_move, -5,  NULL,
@@ -1124,9 +1124,9 @@ mframe_t singer_frames_death5[] =
 	ai_move, 0,   NULL,
 	ai_move, 0,   NULL
 };
-mmove_t singer_move_death5 = { FRAME_death501, FRAME_death524, singer_frames_death5, singer_dead };
+mmove_t heavenly_move_death5 = { FRAME_death501, FRAME_death524, heavenly_frames_death5, heavenly_dead };
 
-mframe_t singer_frames_death6[] =
+mframe_t heavenly_frames_death6[] =
 {
 	ai_move, 0,   NULL,
 	ai_move, 0,   NULL,
@@ -1139,9 +1139,9 @@ mframe_t singer_frames_death6[] =
 	ai_move, 0,   NULL,
 	ai_move, 0,   NULL
 };
-mmove_t singer_move_death6 = { FRAME_death601, FRAME_death610, singer_frames_death6, singer_dead };
+mmove_t heavenly_move_death6 = { FRAME_death601, FRAME_death610, heavenly_frames_death6, heavenly_dead };
 
-void singer_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage, vec3_t point)
+void heavenly_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage, vec3_t point)
 {
 	int		n;
 
@@ -1175,21 +1175,21 @@ void singer_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage
 	if (fabs((self->s.origin[2] + self->viewheight) - point[2]) <= 4)
 	{
 		// head shot
-		self->monsterinfo.currentmove = &singer_move_death3;
+		self->monsterinfo.currentmove = &heavenly_move_death3;
 		return;
 	}
 
 	n = rand() % 5;
 	if (n == 0)
-		self->monsterinfo.currentmove = &singer_move_death1;
+		self->monsterinfo.currentmove = &heavenly_move_death1;
 	else if (n == 1)
-		self->monsterinfo.currentmove = &singer_move_death2;
+		self->monsterinfo.currentmove = &heavenly_move_death2;
 	else if (n == 2)
-		self->monsterinfo.currentmove = &singer_move_death4;
+		self->monsterinfo.currentmove = &heavenly_move_death4;
 	else if (n == 3)
-		self->monsterinfo.currentmove = &singer_move_death5;
+		self->monsterinfo.currentmove = &heavenly_move_death5;
 	else
-		self->monsterinfo.currentmove = &singer_move_death6;
+		self->monsterinfo.currentmove = &heavenly_move_death6;
 }
 
 
@@ -1197,7 +1197,7 @@ void singer_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage
 // SPAWN
 //
 
-void SP_monster_singer_x(edict_t* self)
+void SP_monster_heavenly_x(edict_t* self)
 {
 
 	self->s.modelindex = gi.modelindex("models/monsters/soldier/tris.md2");
@@ -1214,16 +1214,16 @@ void SP_monster_singer_x(edict_t* self)
 
 	self->mass = 100;
 
-	self->pain = singer_pain;
-	self->die = singer_die;
+	self->pain = heavenly_pain;
+	self->die = heavenly_die;
 
-	self->monsterinfo.stand = singer_stand;
-	self->monsterinfo.walk = singer_walk;
-	self->monsterinfo.run = singer_run;
-	self->monsterinfo.dodge = singer_dodge;
-	self->monsterinfo.attack = singer_attack;
+	self->monsterinfo.stand = heavenly_stand;
+	self->monsterinfo.walk = heavenly_walk;
+	self->monsterinfo.run = heavenly_run;
+	self->monsterinfo.dodge = heavenly_dodge;
+	self->monsterinfo.attack = heavenly_attack;
 	self->monsterinfo.melee = NULL;
-	self->monsterinfo.sight = singer_sight;
+	self->monsterinfo.sight = heavenly_sight;
 
 	gi.linkentity(self);
 
@@ -1233,9 +1233,9 @@ void SP_monster_singer_x(edict_t* self)
 }
 
 
-/*QUAKED monster_singer_light (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight
+/*QUAKED monster_heavenly_light (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight
 */
-void SP_monster_singer_light(edict_t* self)
+void SP_monster_heavenly_light(edict_t* self)
 {
 	if (deathmatch->value)
 	{
@@ -1243,7 +1243,7 @@ void SP_monster_singer_light(edict_t* self)
 		return;
 	}
 
-	SP_monster_singer_x(self);
+	SP_monster_heavenly_x(self);
 
 	sound_pain_light = gi.soundindex("soldier/solpain2.wav");
 	sound_death_light = gi.soundindex("soldier/soldeth2.wav");
@@ -1257,9 +1257,9 @@ void SP_monster_singer_light(edict_t* self)
 	self->kill_xp = 10;
 }
 
-/*QUAKED monster_singer (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight
+/*QUAKED monster_heavenly (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight
 */
-void SP_monster_singer(edict_t* self)
+void SP_monster_heavenly(edict_t* self)
 {
 	if (deathmatch->value)
 	{
@@ -1267,7 +1267,7 @@ void SP_monster_singer(edict_t* self)
 		return;
 	}
 
-	SP_monster_singer_x(self);
+	SP_monster_heavenly_x(self);
 
 	sound_pain = gi.soundindex("soldier/solpain1.wav");
 	sound_death = gi.soundindex("soldier/soldeth1.wav");
@@ -1277,12 +1277,12 @@ void SP_monster_singer(edict_t* self)
 	self->health = 30;
 	self->gib_health = -30;
 	self->kill_xp = 50;
-	self->classname = "monster_singer";
+	self->classname = "monster_heavenly";
 }
 
-/*QUAKED monster_singer_ss (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight
+/*QUAKED monster_heavenly_ss (1 .5 0) (-16 -16 -24) (16 16 32) Ambush Trigger_Spawn Sight
 */
-void SP_monster_singer_ss(edict_t* self)
+void SP_monster_heavenly_ss(edict_t* self)
 {
 	if (deathmatch->value)
 	{
@@ -1290,7 +1290,7 @@ void SP_monster_singer_ss(edict_t* self)
 		return;
 	}
 
-	SP_monster_singer_x(self);
+	SP_monster_heavenly_x(self);
 
 	sound_pain_ss = gi.soundindex("soldier/solpain3.wav");
 	sound_death_ss = gi.soundindex("soldier/soldeth3.wav");

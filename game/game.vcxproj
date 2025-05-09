@@ -399,6 +399,7 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd   /QA21164 /MTd </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164   /QA21164 </AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="m_heavenly.c" />
     <ClCompile Include="m_hover.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd   /QA21164 /MTd </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164   /QA21164 </AdditionalOptions>
@@ -481,6 +482,7 @@
     <ClInclude Include="m_flyer.h" />
     <ClInclude Include="m_gladiator.h" />
     <ClInclude Include="m_gunner.h" />
+    <ClInclude Include="m_heavenly.h" />
     <ClInclude Include="m_hover.h" />
     <ClInclude Include="m_infantry.h" />
     <ClInclude Include="m_insane.h" />
