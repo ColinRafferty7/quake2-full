@@ -1,31 +1,14 @@
+This is a mod for Quake 2 that turns it into an RPG style game with features
+based off the Stormlight Archives books from Brandon Sanderson. 
 
-This is the complete source code for Quake 2, version 3.19, buildable with
-visual C++ 6.0.  The linux version should be buildable, but we haven't
-tested it for the release.
-
-The code is all licensed under the terms of the GPL (gnu public license).  
-You should read the entire license, but the gist of it is that you can do 
-anything you want with the code, including sell your new version.  The catch 
-is that if you distribute new binary versions, you are required to make the 
-entire source code available for free to everyone.
-
-The primary intent of this release is for entertainment and educational 
-purposes, but the GPL does allow commercial exploitation if you obey the 
-full license.  If you want to do something commercial and you just can't bear 
-to have your source changes released, we could still negotiate a separate 
-license agreement (for $$$), but I would encourage you to just live with the 
-GPL.
-
-All of the Q2 data files remain copyrighted and licensed under the 
-original terms, so you cannot redistribute data from the original game, but if 
-you do a true total conversion, you can create a standalone game based on 
-this code.
-
-Thanks to Robert Duffy for doing the grunt work of building this release.
-
-John Carmack
-Id Software
-
-Test
-
-
+HOW TO INSTALL:
+1. Download or fork this repository into your drive
+2. Install any version of Quake 2 that has the .exe and .pak files
+3. Install Visual Studios
+4. Open up the 'quake2.sln' file in Visual Studios
+5. Click on the 'game' tab of the project and click 'build'
+6. Go to your 'Quake 2' game folder and create a new folder named 'mod'
+6. In the 'release' folder, take the 'gamex86.dll' file and move it to the 
+   'mod' folder
+7. Create a shortcut for 'quake2.exe'
+8. Open properties for the shortcut and add '+set game mod' to the target
