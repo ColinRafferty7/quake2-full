@@ -41,6 +41,7 @@ C:\git\quake2-full\game\m_mutant.c;C:\git\quake2-full\game\release\m_mutant.obj
 C:\git\quake2-full\game\m_parasite.c;C:\git\quake2-full\game\release\m_parasite.obj
 C:\git\quake2-full\game\m_singer.c;C:\git\quake2-full\game\release\m_singer.obj
 C:\git\quake2-full\game\m_soldier.c;C:\git\quake2-full\game\release\m_soldier.obj
+C:\git\quake2-full\game\m_stormform.c;C:\git\quake2-full\game\release\m_stormform.obj
 C:\git\quake2-full\game\m_supertank.c;C:\git\quake2-full\game\release\m_supertank.obj
 C:\git\quake2-full\game\m_tank.c;C:\git\quake2-full\game\release\m_tank.obj
 C:\git\quake2-full\game\p_client.c;C:\git\quake2-full\game\release\p_client.obj

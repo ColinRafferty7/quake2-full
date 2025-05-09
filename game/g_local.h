@@ -831,6 +831,11 @@ void SP_monster_singer(edict_t *self);
 void SP_monster_soldier(edict_t* self);
 
 //
+// m_stormform.c
+//
+void SP_monster_stormform(edict_t* self);
+
+//
 // g_phys.c
 //
 void G_RunEntity (edict_t *ent);

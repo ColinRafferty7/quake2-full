@@ -404,6 +404,13 @@ C:\git\quake2-full\game\m_soldier.c(409,44): warning C4100: 'other': unreference
 C:\git\quake2-full\game\m_soldier.c(792,44): warning C4100: 'other': unreferenced formal parameter
 C:\git\quake2-full\game\m_soldier.c(1144,63): warning C4100: 'attacker': unreferenced formal parameter
 C:\git\quake2-full\game\m_soldier.c(1144,43): warning C4100: 'inflictor': unreferenced formal parameter
+  m_stormform.c
+C:\git\quake2-full\game\m_stormform.c(409,68): warning C4100: 'damage': unreferenced formal parameter
+C:\git\quake2-full\game\m_stormform.c(409,58): warning C4100: 'kick': unreferenced formal parameter
+C:\git\quake2-full\game\m_stormform.c(409,45): warning C4100: 'other': unreferenced formal parameter
+C:\git\quake2-full\game\m_stormform.c(792,46): warning C4100: 'other': unreferenced formal parameter
+C:\git\quake2-full\game\m_stormform.c(1144,64): warning C4100: 'attacker': unreferenced formal parameter
+C:\git\quake2-full\game\m_stormform.c(1144,44): warning C4100: 'inflictor': unreferenced formal parameter
   m_supertank.c
 C:\git\quake2-full\game\m_supertank.c(452,59): warning C4100: 'kick': unreferenced formal parameter
 C:\git\quake2-full\game\m_supertank.c(452,46): warning C4100: 'other': unreferenced formal parameter
