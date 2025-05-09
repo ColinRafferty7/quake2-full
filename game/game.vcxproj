@@ -412,6 +412,7 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd   /QA21164 /MTd </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164   /QA21164 </AdditionalOptions>
     </ClCompile>
+    <ClCompile Include="m_magnified.c" />
     <ClCompile Include="m_medic.c">
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug Alpha|Win32'"> /QA21164 /MTd   /QA21164 /MTd </AdditionalOptions>
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Release Alpha|Win32'"> /QA21164   /QA21164 </AdditionalOptions>
@@ -486,6 +487,7 @@
     <ClInclude Include="m_hover.h" />
     <ClInclude Include="m_infantry.h" />
     <ClInclude Include="m_insane.h" />
+    <ClInclude Include="m_magnified.h" />
     <ClInclude Include="m_medic.h" />
     <ClInclude Include="m_mutant.h" />
     <ClInclude Include="m_parasite.h" />

@@ -811,9 +811,14 @@ void M_MoveToGoal (edict_t *ent, float dist);
 void M_ChangeYaw (edict_t *ent);
 
 //
-// m_heavenly
+// m_heavenly.c
 //
 void SP_monster_heavenly(edict_t *self);
+
+//
+// m_magnified.c
+//
+void SP_monster_magnified(edict_t *self);
 
 //
 // m_singer.c

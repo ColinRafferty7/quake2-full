@@ -13,7 +13,6 @@ C:\git\quake2-full\game\g_cmds.c(809,3): warning C4996: 'strcat': This function 
 C:\git\quake2-full\game\g_cmds.c(810,3): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\git\quake2-full\game\g_cmds.c(821,3): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\git\quake2-full\game\g_cmds.c(828,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  g_combat.c
 C:\git\quake2-full\game\g_cmds.c(875,7): warning C4459: declaration of 'st' hides global declaration
       C:\git\quake2-full\game\g_local.h(456,21):
       see declaration of 'st'
@@ -21,6 +20,7 @@ C:\git\quake2-full\game\g_cmds.c(875,7): warning C4459: declaration of 'st' hide
 C:\git\quake2-full\game\g_cmds.c(897,3): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\git\quake2-full\game\g_cmds.c(885,3): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\git\quake2-full\game\g_cmds.c(893,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  g_combat.c
 C:\git\quake2-full\game\g_combat.c(378,51): warning C4100: 'attacker': unreferenced formal parameter
 C:\git\quake2-full\game\g_combat.c(378,36): warning C4100: 'targ': unreferenced formal parameter
   g_func.c
@@ -353,6 +353,13 @@ C:\git\quake2-full\game\m_insane.c(477,43): warning C4100: 'other': unreferenced
 C:\git\quake2-full\game\m_insane.c(581,91): warning C4100: 'point': unreferenced formal parameter
 C:\git\quake2-full\game\m_insane.c(581,62): warning C4100: 'attacker': unreferenced formal parameter
 C:\git\quake2-full\game\m_insane.c(581,42): warning C4100: 'inflictor': unreferenced formal parameter
+  m_magnified.c
+C:\git\quake2-full\game\m_magnified.c(409,68): warning C4100: 'damage': unreferenced formal parameter
+C:\git\quake2-full\game\m_magnified.c(409,58): warning C4100: 'kick': unreferenced formal parameter
+C:\git\quake2-full\game\m_magnified.c(409,45): warning C4100: 'other': unreferenced formal parameter
+C:\git\quake2-full\game\m_magnified.c(792,46): warning C4100: 'other': unreferenced formal parameter
+C:\git\quake2-full\game\m_magnified.c(1144,64): warning C4100: 'attacker': unreferenced formal parameter
+C:\git\quake2-full\game\m_magnified.c(1144,44): warning C4100: 'inflictor': unreferenced formal parameter
   m_medic.c
 C:\git\quake2-full\game\m_medic.c(116,43): warning C4100: 'other': unreferenced formal parameter
 C:\git\quake2-full\game\m_medic.c(317,65): warning C4100: 'damage': unreferenced formal parameter
@@ -381,6 +388,8 @@ C:\git\quake2-full\game\m_parasite.c(275,45): warning C4100: 'other': unreferenc
 C:\git\quake2-full\game\m_parasite.c(471,93): warning C4100: 'point': unreferenced formal parameter
 C:\git\quake2-full\game\m_parasite.c(471,64): warning C4100: 'attacker': unreferenced formal parameter
 C:\git\quake2-full\game\m_parasite.c(471,44): warning C4100: 'inflictor': unreferenced formal parameter
+  Generating Code...
+  Compiling...
   m_singer.c
 C:\git\quake2-full\game\m_singer.c(409,65): warning C4100: 'damage': unreferenced formal parameter
 C:\git\quake2-full\game\m_singer.c(409,55): warning C4100: 'kick': unreferenced formal parameter
@@ -388,8 +397,6 @@ C:\git\quake2-full\game\m_singer.c(409,42): warning C4100: 'other': unreferenced
 C:\git\quake2-full\game\m_singer.c(792,43): warning C4100: 'other': unreferenced formal parameter
 C:\git\quake2-full\game\m_singer.c(1144,61): warning C4100: 'attacker': unreferenced formal parameter
 C:\git\quake2-full\game\m_singer.c(1144,41): warning C4100: 'inflictor': unreferenced formal parameter
-  Generating Code...
-  Compiling...
   m_soldier.c
 C:\git\quake2-full\game\m_soldier.c(409,67): warning C4100: 'damage': unreferenced formal parameter
 C:\git\quake2-full\game\m_soldier.c(409,57): warning C4100: 'kick': unreferenced formal parameter

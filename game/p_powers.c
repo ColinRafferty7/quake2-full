@@ -57,8 +57,7 @@ void SpawnMonster(edict_t *self, vec_t *origin)
 	mon = G_Spawn();
 
 	VectorCopy(origin, mon->s.origin);
-	//SP_monster_soldier(mon);
-	SP_monster_heavenly(mon);
+	SP_monster_magnified(mon);
 	mon->s.origin[2] -= mon->mins[2];
 }
 
