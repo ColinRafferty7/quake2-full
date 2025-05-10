@@ -1254,7 +1254,7 @@ void bow_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
 		}
 	}
 
-	T_RadiusDamage(self, self->owner, self->radius_dmg, self->owner, self->dmg_radius, MOD_R_SPLASH);
+	T_RadiusDamage(self, self->owner, self->dmg, self->owner, self->dmg_radius, MOD_R_SPLASH);
 
 	gi.WriteByte(svc_temp_entity);
 	if (self->waterlevel)
@@ -1283,7 +1283,7 @@ void fire_bow(edict_t* self, vec3_t start, vec3_t dir, int damage, int speed, fl
 
 	float chargeScale;
 
-	chargeScale = ((level.time - self->client->attackHeld) + 0.5f);
+	chargeScale = ((level.time - self->client->attackHeld) + 0.4f + (0.1f * self->client->pers.level));
 	if (chargeScale > 2)
 	{
 		chargeScale = 2.0f;

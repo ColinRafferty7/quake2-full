@@ -1652,7 +1652,7 @@ void Bow_Fire_Think(edict_t *ent)
 	}
 	else
 	{
-		Bow_Fire(ent->owner, vec3_origin, 10, false, EF_BLASTER);
+		Bow_Fire(ent->owner, vec3_origin, ent->dmg, false, EF_BLASTER);
 		G_FreeEdict(ent);
 	}
 	ent->nextthink = level.time + FRAMETIME;
@@ -1664,6 +1664,7 @@ void Weapon_Bow_Fire(edict_t *ent)
 	think->owner = ent;
 	think->think = Bow_Fire_Think;
 	think->nextthink = level.time + FRAMETIME;
+	think->dmg = (20 * ent->client->pers.level);
 	gi.linkentity(think);
 	ent->client->ps.gunframe++;
 }
