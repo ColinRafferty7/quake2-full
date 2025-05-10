@@ -903,8 +903,8 @@ void Cmd_Ability(edict_t *ent)
 {
 	//Geomancy(ent);
 	//Lashing(ent);
-	//Division(ent);
-	LightWeaving(ent);
+	Division(ent);
+	//LightWeaving(ent);
 }
 
 

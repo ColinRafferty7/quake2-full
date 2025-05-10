@@ -107,11 +107,13 @@ void Lashing(edict_t *self)
 
 void ExploThink(edict_t *self)
 {
-	int min, max;
+	int min, max, bombCount, damage;
 	vec3_t orig;
 
 	min = -75;
 	max = 75;
+	bombCount = (5 * self->owner->client->pers.level);
+	damage = (20 * self->owner->client->pers.level);
 
 	VectorCopy(self->s.origin, orig);
 
@@ -119,7 +121,7 @@ void ExploThink(edict_t *self)
 	self->s.origin[1] += (min + (rand() % (max - min)));
 	self->s.origin[2] += (min + (rand() % (max - min)));
 
-	T_RadiusDamage(self, self->owner, 120, self->owner, 120, MOD_R_SPLASH);
+	T_RadiusDamage(self, self->owner, damage, self->owner, 120, MOD_R_SPLASH);
 
 	
 	gi.WriteByte(svc_temp_entity);
@@ -136,7 +138,7 @@ void ExploThink(edict_t *self)
 	
 	self->nextthink = level.time + FRAMETIME;
 
-	if (self->count >= 20)
+	if (self->count >= bombCount)
 	{
 		G_FreeEdict(self);
 	}
