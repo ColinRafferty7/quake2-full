@@ -14,5 +14,12 @@ C:\git\quake2-full\game\g_weapon.c(1279,11): warning C4101: 'bolt': unreferenced
 C:\git\quake2-full\game\g_weapon.c(1332,8): warning C4101: 'n': unreferenced local variable
 C:\git\quake2-full\game\g_weapon.c(1368,10): warning C4101: 'tr': unreferenced local variable
 C:\git\quake2-full\game\g_weapon.c(1367,11): warning C4101: 'bolt': unreferenced local variable
+  p_weapon.c
+C:\git\quake2-full\game\p_weapon.c(1441,81): warning C4100: 'effect': unreferenced formal parameter
+C:\git\quake2-full\game\p_weapon.c(1498,80): warning C4100: 'effect': unreferenced formal parameter
+C:\git\quake2-full\game\p_weapon.c(1553,80): warning C4100: 'effect': unreferenced formal parameter
+C:\git\quake2-full\game\p_weapon.c(1608,78): warning C4100: 'effect': unreferenced formal parameter
+C:\git\quake2-full\game\p_weapon.c(1688,83): warning C4100: 'effect': unreferenced formal parameter
+  Generating Code...
      Creating library .\..\release\gamex86.lib and object .\..\release\gamex86.exp
   game.vcxproj -> C:\Program Files (x86)\Steam\steamapps\common\Quake 2\mod\gamex86.dll

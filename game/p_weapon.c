@@ -1719,10 +1719,8 @@ void Weapon_Gauntlet_Fire(edict_t* ent)
 {
 	int		damage;
 
-	if (deathmatch->value)
-		damage = 15;
-	else
-		damage = 10;
+	damage = (20 * ent->client->pers.level);
+
 	Gauntlet_Fire(ent, vec3_origin, damage, false, EF_BLASTER);
 	ent->client->ps.gunframe++;
 }

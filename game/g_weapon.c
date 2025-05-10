@@ -1351,14 +1351,14 @@ void gauntlet_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* 
 		T_Damage(other, self, self->owner, self->velocity, self->s.origin, plane->normal, self->dmg, 0, 0, MOD_ROCKET);
 	}
 
-	T_RadiusDamage(self, self->owner, self->radius_dmg, self->owner, self->dmg_radius, MOD_R_SPLASH);
+	T_RadiusDamage(self, self->owner, self->dmg, self->owner, self->dmg, MOD_R_SPLASH);
 
 	G_FreeEdict(self);
 }
 
 void gauntlet_think(edict_t* self)
 {
-	T_RadiusDamage(self, self->owner, self->radius_dmg, self->owner, self->dmg_radius, MOD_R_SPLASH);
+	T_RadiusDamage(self, self->owner, self->dmg, self->owner, self->dmg, MOD_R_SPLASH);
 	G_FreeEdict(self);
 }
 
