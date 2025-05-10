@@ -1162,7 +1162,7 @@ void sword_think(edict_t* self)
 	AngleVectors(rotate, self->velocity, NULL, NULL);
 	VectorScale(self->velocity, vecScale, self->velocity);
 
-	T_RadiusDamage(self, self->owner, self->radius_dmg, self->owner, self->dmg_radius, MOD_R_SPLASH);
+	T_RadiusDamage(self, self->owner, self->dmg, self->owner, self->dmg_radius, MOD_R_SPLASH);
 
 	self->nextthink = level.time + FRAMETIME;
 }
