@@ -169,6 +169,8 @@ void LightWeaving(edict_t *self)
 	edict_t *lightweave;
 	vec3_t spawn;
 
+	int radius, decay, health;
+
 	lightweave = G_Spawn();
 
 	AngleVectors(self->client->v_angle, spawn, NULL, NULL);
@@ -182,20 +184,19 @@ void LightWeaving(edict_t *self)
 
 	lightweave->s.origin[0] = spawn[0];
 	lightweave->s.origin[1] = spawn[1];
-
 	lightweave->s.angles[1] = self->client->v_angle[1];
-
 	lightweave->solid = SOLID_BBOX;
 	lightweave->monsterinfo.aiflags |= AI_GOOD_GUY;
-
 	lightweave->kill_xp = 0;
-
 	lightweave->think = LightWeaveDecay;
-	lightweave->nextthink = level.time + 5;
+	decay = (self->client->pers.level);
+	lightweave->nextthink = level.time + decay;
+	lightweave->s.modelindex = gi.modelindex("models/monsters/soldier/tris.md2");
+	radius = (200 * self->client->pers.level);
+	health = (10 * self->client->pers.level);
+	lightweave->health = health;
 
-	lightweave->s.modelindex = gi.modelindex("models/objects/cube/tris.md2");
-
-	T_RadiusDamage(lightweave, lightweave, 0, self, 1000, MOD_R_SPLASH);
+	T_RadiusDamage(lightweave, lightweave, 0, self, radius, MOD_R_SPLASH);
 	gi.linkentity(lightweave);
 }
 
