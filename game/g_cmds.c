@@ -181,6 +181,20 @@ void Cmd_Give_f (edict_t *ent)
 			return;
 	}
 
+	if (Q_stricmp(gi.argv(1), "xp") == 0)
+	{
+		if (gi.argc() == 3)
+			GivePlayerXP(ent, atoi(gi.argv(2)));
+		else
+		{
+			ent->client->pers.total_xp = 0;
+			ent->client->pers.level = 1;
+		}
+
+		if (!give_all)
+			return;
+	}
+
 	if (give_all || Q_stricmp(name, "weapons") == 0)
 	{
 		for (i=0 ; i<game.num_items ; i++)

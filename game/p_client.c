@@ -1837,7 +1837,7 @@ void GivePlayerXP(edict_t *self, int xp)
 		self->client->pers.total_xp %= 100;
 		gi.centerprintf(self, "Level Up");
 	}
-	gi.cprintf(self, 2, "Kill XP: %d\n", xp);
+	gi.cprintf(self, 2, "XP Gain: %d\n", xp);
 	gi.cprintf(self, 2, "Level: %d\n", self->client->pers.level);
 	gi.cprintf(self, 2, "XP Total: %d\n", self->client->pers.total_xp);
 }
