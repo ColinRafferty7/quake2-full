@@ -99,9 +99,12 @@ void Geomancy(edict_t *self)
 void Lashing(edict_t *self)
 {
 	vec3_t dir;
+	int strength;
+
+	strength = (200 * self->client->pers.level);
 
 	AngleVectors(self->client->v_angle, dir, NULL, NULL);
-	VectorScale(dir, 1000, dir);
+	VectorScale(dir, strength, dir);
 	VectorAdd(self->velocity, dir, self->velocity);
 }
 
