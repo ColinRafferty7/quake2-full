@@ -959,7 +959,7 @@ void hammer_touch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* su
 		}
 	}
 	
-	T_RadiusDamage(self, self->owner, self->radius_dmg, self->owner, self->dmg_radius, MOD_R_SPLASH);
+	T_RadiusDamage(self, self->owner, self->dmg, self->owner, self->dmg_radius, MOD_R_SPLASH);
 
 	gi.WriteByte(svc_temp_entity);
 	if (self->waterlevel)
