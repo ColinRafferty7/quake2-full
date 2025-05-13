@@ -651,7 +651,7 @@ char *single_statusbar =
 // health
 "xv	50 "
 "hnum "
-"xv	50 "
+"xv	30 "
 "pic 0 "
 
 // ammo
@@ -703,9 +703,9 @@ char *single_statusbar =
 "endif "
 
 // level icon
-"xv 150 "
+"xv 140 yv -70 "
 "lnum "
-"yv 0 "
+"xv 140 yv -70 "
 "pic 0 "
 ;
 
