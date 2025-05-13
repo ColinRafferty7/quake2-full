@@ -20,7 +20,7 @@ void RockThink(edict_t* self, edict_t* other)
 	*/
 	self->count++;
 
-	if (self->count > 2)
+	if (self->count >= 2)
 	{
 		self->nextthink = 0;
 		self->think = NULL;
@@ -92,9 +92,8 @@ void Geomancy(edict_t *self)
 
 	if (hitscan.ent)
 	{
-		gi.cprintf(self, 2, "%s\n", hitscan.ent->classname);
-		//SpawnRock(self, hitscan.endpos);
-		SpawnMonster(self, hitscan.endpos);
+		SpawnRock(self, hitscan.endpos);
+		//SpawnMonster(self, hitscan.endpos);
 	}
 }
 
@@ -205,5 +204,10 @@ void LightWeaving(edict_t *self)
 
 	T_RadiusDamage(lightweave, lightweave, 0, self, radius, MOD_R_SPLASH);
 	gi.linkentity(lightweave);
+}
+
+void EdgeDancing(edict_t *ent)
+{
+	ent->speed *= 2;
 }
 

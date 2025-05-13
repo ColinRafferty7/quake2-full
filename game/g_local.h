@@ -797,6 +797,7 @@ void Geomancy(edict_t *self);
 void Lashing(edict_t *self);
 void Division(edict_t *self);
 void LightWeaving(edict_t *self);
+void EdgeDancing(edict_t *self);
 
 //
 // g_pweapon.c
