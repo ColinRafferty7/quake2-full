@@ -384,6 +384,8 @@ void G_SetStats (edict_t *ent)
 
 	ent->client->ps.stats[STAT_LEVEL] = ent->client->pers.level;
 
+	ent->client->ps.stats[STAT_XP] = ent->client->pers.total_xp;
+
 	//
 	// ammo
 	//

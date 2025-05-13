@@ -703,9 +703,15 @@ char *single_statusbar =
 "endif "
 
 // level icon
-"xv 140 yv -70 "
+"xv 340 yv -70 "
 "lnum "
-"xv 140 yv -70 "
+"xv 320 yv -70 "
+"pic 0 "
+
+// xp
+"xv 340 yv -40 "
+"xnum "
+"xv 320 yv -40 "
 "pic 0 "
 ;
 
