@@ -1011,6 +1011,7 @@ typedef enum
 #define STAT_LEVEL_ICON			18
 #define STAT_LEVEL				19
 #define STAT_XP					20
+#define STAT_MANA				21
 
 #define	MAX_STATS				32
 

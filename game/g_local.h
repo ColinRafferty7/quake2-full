@@ -911,6 +911,8 @@ typedef struct
 
 	int			total_xp;			// stores player xp value
 	int			level;				// stores player level
+
+	int			mana;
 } client_persistant_t;
 
 // client data that stays across deathmatch respawns

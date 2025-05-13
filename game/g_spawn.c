@@ -713,6 +713,12 @@ char *single_statusbar =
 "xnum "
 "xv 320 yv -40 "
 "pic 0 "
+
+// mana
+"xv 330 yv 60 "
+"mnum "
+"xv 300 yv 60 "
+"pic 0 "
 ;
 
 char *dm_statusbar =

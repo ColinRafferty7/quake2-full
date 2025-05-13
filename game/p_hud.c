@@ -386,6 +386,8 @@ void G_SetStats (edict_t *ent)
 
 	ent->client->ps.stats[STAT_XP] = ent->client->pers.total_xp;
 
+	ent->client->ps.stats[STAT_MANA] = ent->client->pers.mana;
+
 	//
 	// ammo
 	//
