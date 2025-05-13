@@ -1256,6 +1256,7 @@ void PutClientInServer (edict_t *ent)
 	// force the current weapon up
 	client->newweapon = client->pers.weapon;
 	ChangeWeapon (ent);
+
 }
 
 /*
@@ -1773,6 +1774,7 @@ void ClientBeginServerFrame (edict_t *ent)
 {
 	gclient_t	*client;
 	int			buttonMask;
+	char	string[1024];
 
 	if (level.intermissiontime)
 		return;

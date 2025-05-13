@@ -1,0 +1,13 @@
+C:\git\quake2-full\ref_gl\gl_draw.c;C:\git\quake2-full\ref_gl\release\gl_draw.obj
+C:\git\quake2-full\ref_gl\gl_image.c;C:\git\quake2-full\ref_gl\release\gl_image.obj
+C:\git\quake2-full\ref_gl\gl_light.c;C:\git\quake2-full\ref_gl\release\gl_light.obj
+C:\git\quake2-full\ref_gl\gl_mesh.c;C:\git\quake2-full\ref_gl\release\gl_mesh.obj
+C:\git\quake2-full\ref_gl\gl_model.c;C:\git\quake2-full\ref_gl\release\gl_model.obj
+C:\git\quake2-full\ref_gl\gl_rmain.c;C:\git\quake2-full\ref_gl\release\gl_rmain.obj
+C:\git\quake2-full\ref_gl\gl_rmisc.c;C:\git\quake2-full\ref_gl\release\gl_rmisc.obj
+C:\git\quake2-full\ref_gl\gl_rsurf.c;C:\git\quake2-full\ref_gl\release\gl_rsurf.obj
+C:\git\quake2-full\ref_gl\gl_warp.c;C:\git\quake2-full\ref_gl\release\gl_warp.obj
+C:\git\quake2-full\win32\glw_imp.c;C:\git\quake2-full\ref_gl\release\glw_imp.obj
+C:\git\quake2-full\game\q_shared.c;C:\git\quake2-full\ref_gl\release\q_shared.obj
+C:\git\quake2-full\win32\q_shwin.c;C:\git\quake2-full\ref_gl\release\q_shwin.obj
+C:\git\quake2-full\win32\qgl_win.c;C:\git\quake2-full\ref_gl\release\qgl_win.obj

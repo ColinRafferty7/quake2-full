@@ -649,7 +649,7 @@ char *single_statusbar =
 "yb	-24 "
 
 // health
-"xv	0 "
+"xv	50 "
 "hnum "
 "xv	50 "
 "pic 0 "
@@ -701,6 +701,12 @@ char *single_statusbar =
 "	xv	148 "
 "	pic	11 "
 "endif "
+
+// level icon
+"xv 150 "
+"lnum "
+"yv 0 "
+"pic 0 "
 ;
 
 char *dm_statusbar =
