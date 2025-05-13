@@ -1290,6 +1290,13 @@ void ClientBeginDeathmatch (edict_t *ent)
 	ClientEndServerFrame (ent);
 }
 
+void manathink(edict_t* self)
+{
+	self->owner->client->pers.mana++;
+
+	self->nextthink = level.time + 0.2f;
+}
+
 
 /*
 ===========
@@ -1302,6 +1309,15 @@ to be placed into the game.  This will happen every level load.
 void ClientBegin (edict_t *ent)
 {
 	int		i;
+	
+	edict_t *manaEnt;
+
+	manaEnt = G_Spawn();
+
+	manaEnt->owner = ent;
+
+	manaEnt->think = manathink;
+	manaEnt->nextthink = level.time + 0.2f;
 
 	ent->client = game.clients + (ent - g_edicts - 1);
 
@@ -1762,7 +1778,6 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 			UpdateChaseCam(other);
 	}
 }
-
 
 /*
 ==============
