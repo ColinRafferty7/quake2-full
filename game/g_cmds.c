@@ -913,14 +913,18 @@ void Cmd_PlayerList_f(edict_t *ent)
 	gi.cprintf(ent, PRINT_HIGH, "%s", text);
 }
 
-void Cmd_Ability(edict_t *ent)
+void Cmd_Ability(edict_t* ent)
 {
-	//Geomancy(ent);
-	Lashing(ent);
-	//Division(ent);
-	//LightWeaving(ent);
-}
+	if (ent->client->pers.mana >= 10)
+	{
+		//Geomancy(ent);
+		Lashing(ent);
+		//Division(ent);
+		//LightWeaving(ent);
 
+		ent->client->pers.mana -= 10;
+	}
+}
 
 /*
 =================
