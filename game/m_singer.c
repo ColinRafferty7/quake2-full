@@ -1192,6 +1192,27 @@ void singer_die(edict_t* self, edict_t* inflictor, edict_t* attacker, int damage
 		self->monsterinfo.currentmove = &singer_move_death6;
 }
 
+void singer_leap(edict_t *self)
+{
+	vec3_t forward;
+
+	VectorSubtract(self->enemy->s.origin, self->s.origin, forward);
+	VectorNormalize(forward);
+	VectorScale(forward, 400, forward);
+	forward[2] += 200;
+	VectorCopy(forward, self->velocity);
+}
+
+void singer_leap_start(edict_t *self)
+{
+
+	singer_stand(self);
+
+	self->monsterinfo.pausetime = level.time + 0.5f;
+
+	singer_leap(self);
+}
+
 
 //
 // SPAWN
@@ -1221,7 +1242,7 @@ void SP_monster_singer_x(edict_t* self)
 	self->monsterinfo.walk = singer_walk;
 	self->monsterinfo.run = singer_run;
 	self->monsterinfo.dodge = singer_dodge;
-	self->monsterinfo.attack = singer_attack;
+	self->monsterinfo.attack = singer_leap_start;//singer_attack;
 	self->monsterinfo.melee = NULL;
 	self->monsterinfo.sight = singer_sight;
 

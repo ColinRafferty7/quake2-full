@@ -917,11 +917,11 @@ void Cmd_Ability(edict_t* ent)
 {
 	if (ent->client->pers.mana >= 10)
 	{
-		//Geomancy(ent);
+		Geomancy(ent);
 		//Lashing(ent);
 		//Division(ent);
 		//LightWeaving(ent);
-		EdgeDancing(ent);
+		//EdgeDancing(ent);
 
 		ent->client->pers.mana -= 10;
 	}

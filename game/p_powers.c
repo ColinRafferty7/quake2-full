@@ -58,7 +58,8 @@ void SpawnMonster(edict_t *self, vec_t *origin)
 
 	VectorCopy(origin, mon->s.origin);
 	
-	SP_monster_smokeform(mon);
+	SP_monster_singer(mon);
+	mon->enemy = self;
 	mon->s.origin[2] -= mon->mins[2];
 	gi.linkentity(mon);
 }
@@ -92,8 +93,8 @@ void Geomancy(edict_t *self)
 
 	if (hitscan.ent)
 	{
-		SpawnRock(self, hitscan.endpos);
-		//SpawnMonster(self, hitscan.endpos);
+		//SpawnRock(self, hitscan.endpos);
+		SpawnMonster(self, hitscan.endpos);
 	}
 }
 
@@ -208,6 +209,6 @@ void LightWeaving(edict_t *self)
 
 void EdgeDancing(edict_t *ent)
 {
-	ent->speed *= 2;
+	//ent->client->ps.pmove *= 2;
 }
 
