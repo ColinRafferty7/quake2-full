@@ -1,29 +1,21 @@
 #include "g_local.h"
 
-void RockTouch(edict_t* self, edict_t* other, cplane_t* plane, csurface_t* surf)
+void RockDecay(edict_t* self)
 {
-
+	G_FreeEdict(self);
 }
 
 void RockThink(edict_t* self, edict_t* other)
 {
 	self->s.origin[2] += 30;
 
-	float heightDif;
-	heightDif = (self->owner->s.origin[2] + self->owner->mins[2]) - (self->s.origin[2] + self->maxs[2]);
-	gi.cprintf(self->owner, 2, "%f\n", heightDif);
-	/*
-	if ()
-	{
-		self->owner->s.origin[2] = self->s.origin[2] + self->maxs[2] + self->owner->maxs[2];
-	}
-	*/
 	self->count++;
 
 	if (self->count >= 2)
 	{
-		self->nextthink = 0;
-		self->think = NULL;
+		gi.linkentity(self);
+		self->nextthink = level.time + (self->mass);
+		self->think = RockDecay;
 	}
 	else
 	{
@@ -39,13 +31,12 @@ void SpawnRock(edict_t* self, vec3_t origin)
 
 	VectorCopy(origin, rock->s.origin);
 	rock->s.origin[2] -= 50;
-	rock->s.modelindex = gi.modelindex("models/objects/barrels/tris.md2");
 	rock->solid = SOLID_BBOX;
-	rock->movetype = MOVETYPE_NONE;
+	rock->movetype = MOVETYPE_STEP;
+	rock->s.modelindex = gi.modelindex("models/objects/barrels/tris.md2");
 	rock->think = RockThink;
 	rock->nextthink = level.time + FRAMETIME;
-	rock->touch = RockTouch;
-	rock->owner = self;
+	rock->mass = self->client->pers.level;
 	VectorSet(rock->mins, -15, -15, 0);
 	VectorSet(rock->maxs, 15, 15, 50);
 	gi.linkentity(rock);
