@@ -195,6 +195,12 @@ void Cmd_Give_f (edict_t *ent)
 			return;
 	}
 
+	if (Q_stricmp(gi.argv(1), "ability") == 0)
+	{
+		if (gi.argc() == 3)
+			strncpy(ent->client->pers.ability, gi.argv(2), sizeof(ent->client->pers.ability));
+	}
+
 	if (give_all || Q_stricmp(name, "weapons") == 0)
 	{
 		for (i=0 ; i<game.num_items ; i++)
@@ -915,15 +921,29 @@ void Cmd_PlayerList_f(edict_t *ent)
 
 void Cmd_Ability(edict_t* ent)
 {
+	char *token;
+
 	if (ent->client->pers.mana >= 10)
 	{
-		//Geomancy(ent);
-		//Lashing(ent);
-		//Division(ent);
-		//LightWeaving(ent);
-		EdgeDancing(ent);
-
 		ent->client->pers.mana -= 10;
+
+		token = ent->client->pers.ability;
+
+		if (Q_stricmp(token, "geomancy") == 0)
+			Geomancy(ent);
+		else if (Q_stricmp(token, "lashing") == 0)
+			Lashing(ent);
+		else if (Q_stricmp(token, "division") == 0)
+			Division(ent);
+		else if (Q_stricmp(token, "lightweaving") == 0)
+			LightWeaving(ent);
+		else if (Q_stricmp(token, "edgedancing") == 0)
+			EdgeDancing(ent);
+		else
+		{
+			gi.cprintf(ent, 2, "Ability not recognized: %d", token);
+			ent->client->pers.mana += 10;
+		}
 	}
 }
 

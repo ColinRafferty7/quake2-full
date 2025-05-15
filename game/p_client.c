@@ -632,6 +632,8 @@ void InitClientPersistant (gclient_t *client)
 	client->pers.total_xp       = 0;
 
 	client->pers.mana			= 1200;
+
+	strncpy(client->pers.ability, "geomancy", sizeof(client->pers.ability)-1);
 }
 
 

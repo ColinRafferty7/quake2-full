@@ -93,8 +93,8 @@ void Geomancy(edict_t *self)
 
 	if (hitscan.ent)
 	{
-		//SpawnRock(self, hitscan.endpos);
-		SpawnMonster(self, hitscan.endpos);
+		SpawnRock(self, hitscan.endpos);
+		//SpawnMonster(self, hitscan.endpos);
 	}
 }
 

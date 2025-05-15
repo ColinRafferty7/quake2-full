@@ -915,6 +915,8 @@ typedef struct
 	int			level;				// stores player level
 
 	int			mana;
+
+	char		ability[16];
 } client_persistant_t;
 
 // client data that stays across deathmatch respawns
