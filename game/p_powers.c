@@ -207,8 +207,27 @@ void LightWeaving(edict_t *self)
 	gi.linkentity(lightweave);
 }
 
+void heal_think(edict_t *self)
+{
+	self->owner->health++;
+	self->count++;
+
+	if (self->count > 40 || self->owner->health >= 100)
+	{
+		G_FreeEdict(self);
+	}
+
+	self->nextthink = level.time + FRAMETIME;
+}
+
 void EdgeDancing(edict_t *ent)
 {
-	//ent->client->ps.pmove *= 2;
+	edict_t *healing;
+
+	healing = G_Spawn();
+
+	healing->think = heal_think;
+	healing->owner = ent;
+	healing->nextthink = level.time + FRAMETIME;
 }
 
