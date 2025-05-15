@@ -939,6 +939,16 @@ void Cmd_Ability(edict_t* ent)
 			LightWeaving(ent);
 		else if (Q_stricmp(token, "edgedancing") == 0)
 			EdgeDancing(ent);
+		else if (Q_stricmp(token, "singer") == 0)
+			SpawnEnemy(ent, "singer");
+		else if (Q_stricmp(token, "heavenly") == 0)
+			SpawnEnemy(ent, "heavenly");
+		else if (Q_stricmp(token, "magnified") == 0)
+			SpawnEnemy(ent, "magnified");
+		else if (Q_stricmp(token, "stormform") == 0)
+			SpawnEnemy(ent, "stormform");
+		else if (Q_stricmp(token, "smokeform") == 0)
+			SpawnEnemy(ent, "smokeform");
 		else
 		{
 			gi.cprintf(ent, 2, "Ability not recognized: %d", token);

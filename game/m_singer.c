@@ -210,6 +210,8 @@ mmove_t singer_move_stand4 = { FRAME_stand401, FRAME_stand452, singer_frames_sta
 
 void singer_stand(edict_t* self)
 {
+	if (self->enemy)
+		gi.cprintf(self->enemy, 2, "Stand\n");
 	if ((self->monsterinfo.currentmove == &singer_move_stand3) || (random() < 0.8))
 		self->monsterinfo.currentmove = &singer_move_stand1;
 	else
@@ -282,6 +284,8 @@ mmove_t singer_move_walk2 = { FRAME_walk209, FRAME_walk218, singer_frames_walk2,
 
 void singer_walk(edict_t* self)
 {
+	if (self->enemy)
+		//gi.cprintf(self->enemy, 2, "Walk\n");
 	if (random() < 0.5)
 		self->monsterinfo.currentmove = &singer_move_walk1;
 	else
@@ -315,6 +319,8 @@ mmove_t singer_move_run = { FRAME_run03, FRAME_run08, singer_frames_run, NULL };
 
 void singer_run(edict_t* self)
 {
+	if (self->enemy)
+		//gi.cprintf(self->enemy, 2, "Run\n");
 	if (self->monsterinfo.aiflags & AI_STAND_GROUND)
 	{
 		self->monsterinfo.currentmove = &singer_move_stand1;
@@ -771,6 +777,8 @@ mmove_t singer_move_attack6 = { FRAME_runs01, FRAME_runs14, singer_frames_attack
 
 void singer_attack(edict_t* self)
 {
+	if (self->enemy)
+		gi.cprintf(self->enemy, 2, "Attack\n");
 	if (self->s.skinnum < 4)
 	{
 		if (random() < 0.5)
@@ -791,6 +799,8 @@ void singer_attack(edict_t* self)
 
 void singer_sight(edict_t* self, edict_t* other)
 {
+	if (self->enemy)
+		//gi.cprintf(self->enemy, 2, "Sight\n");
 	if (random() < 0.5)
 		gi.sound(self, CHAN_VOICE, sound_sight1, 1, ATTN_NORM, 0);
 	else
@@ -1205,7 +1215,8 @@ void singer_leap(edict_t *self)
 
 void singer_leap_start(edict_t *self)
 {
-
+	if (self->enemy)
+		//gi.cprintf(self->enemy, 2, "Leap\n");
 	singer_stand(self);
 
 	self->monsterinfo.pausetime = level.time + 0.5f;
@@ -1241,8 +1252,8 @@ void SP_monster_singer_x(edict_t* self)
 	self->monsterinfo.stand = singer_stand;
 	self->monsterinfo.walk = singer_walk;
 	self->monsterinfo.run = singer_run;
-	self->monsterinfo.dodge = singer_dodge;
-	self->monsterinfo.attack = singer_leap_start;//singer_attack;
+	self->monsterinfo.dodge = singer_leap_start;//singer_dodge;
+	self->monsterinfo.attack = singer_attack;
 	self->monsterinfo.melee = NULL;
 	self->monsterinfo.sight = singer_sight;
 

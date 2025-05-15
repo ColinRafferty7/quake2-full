@@ -798,6 +798,7 @@ void Lashing(edict_t *self);
 void Division(edict_t *self);
 void LightWeaving(edict_t *self);
 void EdgeDancing(edict_t *self);
+void SpawnEnemy(edict_t *self, char *type);
 
 //
 // g_pweapon.c

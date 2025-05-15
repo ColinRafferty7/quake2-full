@@ -42,7 +42,7 @@ void SpawnRock(edict_t* self, vec3_t origin)
 	gi.linkentity(rock);
 }
 
-void SpawnMonster(edict_t *self, vec_t *origin)
+void SpawnSinger(edict_t *self, vec_t *origin)
 {
 	edict_t *mon;
 	mon = G_Spawn();
@@ -50,6 +50,58 @@ void SpawnMonster(edict_t *self, vec_t *origin)
 	VectorCopy(origin, mon->s.origin);
 	
 	SP_monster_singer(mon);
+	mon->enemy = self;
+	mon->s.origin[2] -= mon->mins[2];
+	gi.linkentity(mon);
+}
+
+void SpawnHeavenly(edict_t* self, vec_t* origin)
+{
+	edict_t* mon;
+	mon = G_Spawn();
+
+	VectorCopy(origin, mon->s.origin);
+
+	SP_monster_heavenly(mon);
+	mon->enemy = self;
+	mon->s.origin[2] -= mon->mins[2];
+	gi.linkentity(mon);
+}
+
+void SpawnMagnified(edict_t* self, vec_t* origin)
+{
+	edict_t* mon;
+	mon = G_Spawn();
+
+	VectorCopy(origin, mon->s.origin);
+
+	SP_monster_magnified(mon);
+	mon->enemy = self;
+	mon->s.origin[2] -= mon->mins[2];
+	gi.linkentity(mon);
+}
+
+void SpawnStormform(edict_t* self, vec_t* origin)
+{
+	edict_t* mon;
+	mon = G_Spawn();
+
+	VectorCopy(origin, mon->s.origin);
+
+	SP_monster_stormform(mon);
+	mon->enemy = self;
+	mon->s.origin[2] -= mon->mins[2];
+	gi.linkentity(mon);
+}
+
+void SpawnSmokeform(edict_t* self, vec_t* origin)
+{
+	edict_t* mon;
+	mon = G_Spawn();
+
+	VectorCopy(origin, mon->s.origin);
+
+	SP_monster_smokeform(mon);
 	mon->enemy = self;
 	mon->s.origin[2] -= mon->mins[2];
 	gi.linkentity(mon);
@@ -86,6 +138,48 @@ void Geomancy(edict_t *self)
 	{
 		SpawnRock(self, hitscan.endpos);
 		//SpawnMonster(self, hitscan.endpos);
+	}
+}
+
+void SpawnEnemy(edict_t* self, char *type)
+{
+	vec3_t end1, end2;
+	trace_t hitscan;
+
+	AngleVectors(self->client->v_angle, end1, NULL, NULL);
+	VectorScale(end1, 200, end1);
+	VectorAdd(end1, self->s.origin, end1);
+
+	hitscan = gi.trace(self->s.origin, NULL, NULL, end1, self, MASK_SOLID);
+
+	if (VectorCompare(hitscan.endpos, end1))
+	{
+		end2[2] = -1.0f;
+		VectorScale(end2, 100, end2);
+		VectorAdd(end2, end1, end2);
+
+		hitscan = gi.trace(end1, NULL, NULL, end2, self, MASK_SOLID);
+
+		if (VectorCompare(hitscan.endpos, end2))
+		{
+			hitscan.ent = NULL;
+		}
+
+
+	}
+
+	if (hitscan.ent)
+	{
+		if (Q_stricmp(type, "singer") == 0)
+			SpawnSinger(self, hitscan.endpos);
+		else if (Q_stricmp(type, "heavenly") == 0)
+			SpawnHeavenly(self, hitscan.endpos);
+		else if (Q_stricmp(type, "magnified") == 0)
+			SpawnMagnified(self, hitscan.endpos);
+		else if (Q_stricmp(type, "stormform") == 0)
+			SpawnStormform(self, hitscan.endpos);
+		else if (Q_stricmp(type, "smokeform") == 0)
+			SpawnSmokeform(self, hitscan.endpos);
 	}
 }
 
